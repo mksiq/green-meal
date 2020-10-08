@@ -3,65 +3,205 @@
         <h3 class="big">Breakfast</h3>
         <div class="grid-on-the-menu">
             {{#each breakfastData}}
+            <div class="meal-details" style="display: none;" id="{{id}}detail">
+
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                <p>Ingredients: {{ingredients}}</p>
+                <p>CAD$ {{price}}</p>
+                <p>Cooking time: {{cookingTime}} minutes</p>
+                <p>Calories: {{calories}} kcal</p>
+                <p class="tags">Category: {{category}} </p>
+                <p>Available:
+                    {{#if available}}
+                    Yes
+                    {{#else}}
+                    No
+                    {{/else}}
+                    {{/if}}
+                </p>
+
+                <button class="detail-button">Add to Cart</button>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'none';
+                    ">Close</button>
+
+            </div>
             <div class="card">
                 <h4>{{title}}</h4>
                 <img src="../imgs/{{id}}_.jpg">
                 <p>{{description}}</p>
                 <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}} </p>
-                <button>Add to Cart</button>
+                <p class="tags">Category: {{category}}</p>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'block';
+                ">+ Details</button>
+
+                <button class="detail-button">Add to Cart</button>
             </div>
             {{/each}}
         </div>
         <h3 class="big">Dinner</h3>
         <div class="grid-on-the-menu">
             {{#each dinnerData}}
+            <div class="meal-details" style="display: none;" id="{{id}}detail">
+
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                <p>Ingredients: {{ingredients}}</p>
+                <p>CAD$ {{price}}</p>
+                <p>Cooking time: {{cookingTime}} minutes</p>
+                <p>Calories: {{calories}} kcal</p>
+                <p class="tags">Category: {{category}} </p>
+                <p>Available:
+                    {{#if available}}
+                    Yes
+                    {{#else}}
+                    No
+                    {{/else}}
+                    {{/if}}
+                </p>
+
+                <button class="detail-button">Add to Cart</button>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'none';
+                    ">Close</button>
+
+            </div>
             <div class="card">
                 <h4>{{title}}</h4>
                 <img src="../imgs/{{id}}_.jpg">
                 <p>{{description}}</p>
                 <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}} </p>
-                <button>Add to Cart</button>
+                <p class="tags">Category: {{category}}</p>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'block';
+                ">+ Details</button>
+
+                <button class="detail-button">Add to Cart</button>
             </div>
             {{/each}}
         </div>
         <h3 class="big">Salads</h3>
         <div class="grid-on-the-menu">
             {{#each saladsData}}
+            <div class="meal-details" style="display: none;" id="{{id}}detail">
+
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                <p>Ingredients: {{ingredients}}</p>
+                <p>CAD$ {{price}}</p>
+                <p>Cooking time: {{cookingTime}} minutes</p>
+                <p>Calories: {{calories}} kcal</p>
+                <p class="tags">Category: {{category}} </p>
+                <p>Available:
+                    {{#if available}}
+                    Yes
+                    {{#else}}
+                    No
+                    {{/else}}
+                    {{/if}}
+                </p>
+
+                <button class="detail-button">Add to Cart</button>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'none';
+                    ">Close</button>
+
+            </div>
             <div class="card">
                 <h4>{{title}}</h4>
                 <img src="../imgs/{{id}}_.jpg">
                 <p>{{description}}</p>
                 <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}} </p>
-                <button>Add to Cart</button>
+                <p class="tags">Category: {{category}}</p>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'block';
+                ">+ Details</button>
+
+                <button class="detail-button">Add to Cart</button>
             </div>
             {{/each}}
         </div>
         <h3 class="big">Sandwiches and Burgers</h3>
         <div class="grid-on-the-menu">
             {{#each sandwichesData}}
+            <div class="meal-details" style="display: none;" id="{{id}}detail">
+
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                <p>Ingredients: {{ingredients}}</p>
+                <p>CAD$ {{price}}</p>
+                <p>Cooking time: {{cookingTime}} minutes</p>
+                <p>Calories: {{calories}} kcal</p>
+                <p class="tags">Category: {{category}} </p>
+                <p>Available:
+                    {{#if available}}
+                    Yes
+                    {{#else}}
+                    No
+                    {{/else}}
+                    {{/if}}
+                </p>
+
+                <button class="detail-button">Add to Cart</button>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'none';
+                    ">Close</button>
+
+            </div>
             <div class="card">
                 <h4>{{title}}</h4>
                 <img src="../imgs/{{id}}_.jpg">
                 <p>{{description}}</p>
                 <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}} </p>
-                <button>Add to Cart</button>
+                <p class="tags">Category: {{category}}</p>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'block';
+                ">+ Details</button>
+
+                <button class="detail-button">Add to Cart</button>
             </div>
             {{/each}}
         </div>
         <h3 class="big">Soups</h3>
         <div class="grid-on-the-menu">
             {{#each soupsData}}
+            <div class="meal-details" style="display: none;" id="{{id}}detail">
+
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                <p>Ingredients: {{ingredients}}</p>
+                <p>CAD$ {{price}}</p>
+                <p>Cooking time: {{cookingTime}} minutes</p>
+                <p>Calories: {{calories}} kcal</p>
+                <p class="tags">Category: {{category}} </p>
+                <p>Available:
+                    {{#if available}}
+                    Yes
+                    {{#else}}
+                    No
+                    {{/else}}
+                    {{/if}}
+                </p>
+
+                <button class="detail-button">Add to Cart</button>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'none';
+                    ">Close</button>
+
+            </div>
             <div class="card">
                 <h4>{{title}}</h4>
                 <img src="../imgs/{{id}}_.jpg">
                 <p>{{description}}</p>
                 <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}} </p>
-                <button>Add to Cart</button>
+                <p class="tags">Category: {{category}}</p>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'block';
+                ">+ Details</button>
+
+                <button class="detail-button">Add to Cart</button>
             </div>
             {{/each}}
         </div>

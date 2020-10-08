@@ -1,6 +1,7 @@
 <div id="hero-div">
     <img src="../imgs/background.jpg" id="many-vegetables" class="hero-item">
 </div>
+
 <div id="how-it-works">
     <h3 class="big">How it works</h3>
     <div class="a-grid">
@@ -33,17 +34,49 @@
 <div id="top-meals">
     <div class="center">
         <h3 class="big">Featured Recipes</h3>
+
         <div class="horizontal-scroll">
             {{#each data}}
             {{#if featured}}
+
+            <div class="meal-details" style="display: none;" id="{{id}}detail">
+                <h4>{{title}}</h4>
+                <p>{{description}}</p>
+                <p>Ingredients: {{ingredients}}</p>
+                <p>CAD$ {{price}}</p>
+                <p>Cooking time: {{cookingTime}} minutes</p>
+                <p>Calories: {{calories}} kcal</p>
+                <p class="tags">Category: {{category}} </p>
+                <p>Available:
+                    {{#if available}}
+                    Yes
+                    {{#else}}
+                    No
+                    {{/else}}
+                    {{/if}}
+                </p>
+
+                <button class="detail-button">Add to Cart</button>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'none';
+                    ">Close</button>
+            </div>
+
             <div class="card">
                 <h4>{{title}}</h4>
                 <img src="../imgs/{{id}}_.jpg">
                 <p>{{description}}</p>
-                <p class="tags">Category: {{category}} </p>
-                <button>Subscribe</button>
-            </div>{{/if}}
+                <p>CAD$ {{price}}</p>
+                <p class="tags">Category: {{category}}</p>
+                <button class="detail-button cancel" onclick="
+                    document.getElementById('{{id}}detail').style.display = 'block';
+                ">+ Details</button>
+
+                <button class="detail-button" >Add to Cart</button>
+            </div>
+            {{/if}}
             {{/each}}
         </div>
     </div>
+
 </div>
