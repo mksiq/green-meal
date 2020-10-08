@@ -31,7 +31,7 @@ app.get("/on-the-menu", (req, res) =>  {
     let breakfast = prod.products.filter( (product) => { if(product.category == "Breakfast") return product});
     let dinner = prod.products.filter( (product) => { if(product.category == "Dinner") return product});
     let salads = prod.products.filter( (product) => { if(product.category == "Salads") return product});
-    let sandwiches = prod.products.filter( (product) => { if(product.category == "Burgers and Sandwiches")  return product});
+    let sandwiches = prod.products.filter( (product) => { if(product.category == "Sandwiches")  return product});
     let soups = prod.products.filter( (product) => { if(product.category == "Soups") return product});
     
     res.render('on-the-menu',
