@@ -1,0 +1,74 @@
+<div id="top-meals">
+    <div class="center">
+
+        <h3 class="big">Breakfast</h3>
+        <div class="grid-on-the-menu">
+            {{#each breakfastData}}
+            <div class="card">
+                <h4>{{title}}</h4>
+                <img src="../imgs/{{id}}_.jpg">
+                <p>{{description}}</p>
+                <p>CAD$ {{price}}</p>
+                <p class="tags">Category: {{category}} </p>
+                <button>Add to Cart</button>
+            </div>
+            {{/each}}
+        </div>
+        <h3 class="big">Dinner</h3>
+        <div class="grid-on-the-menu">
+            {{#each dinnerData}}
+            <div class="card">
+                <h4>{{title}}</h4>
+                <img src="../imgs/{{id}}_.jpg">
+                <p>{{description}}</p>
+                <p>CAD$ {{price}}</p>
+                <p class="tags">Category: {{category}} </p>
+                <button>Add to Cart</button>
+            </div>
+            {{/each}}
+        </div>
+
+        <h3 class="big">Salads</h3>
+        <div class="grid-on-the-menu">
+            {{#each saladsData}}
+            <div class="card">
+                <h4>{{title}}</h4>
+                <img src="../imgs/{{id}}_.jpg">
+                <p>{{description}}</p>
+                <p>CAD$ {{price}}</p>
+                <p class="tags">Category: {{category}} </p>
+                <button>Add to Cart</button>
+            </div>
+            {{/each}}
+        </div>
+
+        <h3 class="big">Sandwiches and Burgers</h3>
+        <div class="grid-on-the-menu">
+            {{#each sandwichesData}}
+            <div class="card">
+                <h4>{{title}}</h4>
+                <img src="../imgs/{{id}}_.jpg">
+                <p>{{description}}</p>
+                <p>CAD$ {{price}}</p>
+                <p class="tags">Category: {{category}} </p>
+                <button>Add to Cart</button>
+            </div>
+            {{/each}}
+        </div>
+
+        <h3 class="big">Soups</h3>
+        <div class="grid-on-the-menu">
+            {{#each soupsData}}
+            <div class="card">
+                <h4>{{title}}</h4>
+                <img src="../imgs/{{id}}_.jpg">
+                <p>{{description}}</p>
+                <p>CAD$ {{price}}</p>
+                <p class="tags">Category: {{category}} </p>
+                <button>Add to Cart</button>
+            </div>
+            {{/each}}
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="block-background">
+</div>
+<div id="registration">
+    <form id="formId" method="POST" action="https://httpbin.org/post">
+        <div id="sign-up-div">
+            <h2>Sign Up</h2>
+            <p>Fist Name</p>
+            <p><input type="text" name="first-name" size="30" required /></p>
+            <p>Last Name</p>
+            <p><input type="text" name="last-name" size="30" required /></p>
+            <p>E-mail</p>
+            <p><input type="email" name="email" size="30" required /></p>
+            <p>Password:</p>
+            <p><input type="password" name="password" min="6" required /></p>
+        </div>
+        <p class="formButtons">
+            <input class="submitButtonsForm confirm" type="submit" name="submit" value="Sign" />
+            <input id="close-login-popup" class="submitButtonsForm cancel" type="reset" name="cancel" value="Close"
+            onclick="
+                    document.getElementsByClassName('block-background')[0].style.display = 'none';
+                    document.getElementById('registration').style.display = 'none';
+                    document.getElementsByTagName('html')[0].style.overflow = 'auto';
+            " />
+        </p>
+        <br>
+    </form>
+</div>

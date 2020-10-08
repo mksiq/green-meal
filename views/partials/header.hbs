@@ -1,0 +1,59 @@
+<header>
+    {{>login}}
+    {{>registration}}
+    
+
+    <div id="menu-bar">
+        <ul>
+            <a href="/">
+                <li>
+                    <p>HOME</p>
+                </li>
+            </a>
+            <a href="/on-the-menu">
+                <li>
+                    <p>ON THE MENU</p>
+                </li>
+            </a>
+            <a onclick="
+                    document.getElementsByClassName('block-background')[0].style.display = 'block';
+                    document.getElementById('registration').style.display = 'block';
+                    document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+            " id="registration-popup">
+                <li>
+                    <p>SIGN UP</p>
+                </li>
+            </a>
+            <a onclick="
+                    document.getElementsByClassName('block-background')[0].style.display = 'block';
+                    document.getElementById('login').style.display = 'block';
+                    document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+            " id="login-popup">
+                <li>
+                    <p>LOGIN</p>
+                </li>
+            </a>
+            <a > 
+                {{!-- not available yet --}}
+                <li>
+                    <p id="cart">CART</p>
+                </li>
+            </a>
+        </ul>
+    </div>
+    <a class="mobile" id="mobile-menu" onclick="
+            if(document.getElementById('menu-bar').style.display == 'block'){
+                    document.getElementById('menu-bar').style.display = 'none';
+                    document.getElementById('mobile-menu').style.color = '#FFF' ;
+            }
+            else{
+                document.getElementById('menu-bar').style.display = 'block';
+                document.getElementById('mobile-menu').style.color = '#000' ;
+                }
+    "><i class="material-icons">menu</i></a>
+    <span class="logo">
+        <h1><a href="/" class="logo white">greenMeal</a></h1>
+    </span>
+
+
+</header>

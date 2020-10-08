@@ -1,0 +1,55 @@
+<div id="hero-div">
+
+    <img src="../imgs/background.jpg" id="many-vegetables" class="hero-item">
+</div>
+<div id="how-it-works">
+    <h3 class="big">How it works</h3>
+    <div class="a-grid">
+
+
+        <div>
+            <span class="img-container">
+                <img src="../imgs/many-vegetables.jpg" class="hiw-item">
+            </span>
+            <h4 class="featured">We provide fresh ingredients</h4>
+            <p>Along with delicious recipes to bring you the most healthy meals.
+                All items are organic, cruelty-free and most are local.</p>
+        </div>
+        <div>
+            <span class="img-container">
+                <img src="../imgs/healthy-food.jpg" class="hiw-item">
+            </span>
+            <h4 class="featured">You pick the meals and restrictions</h4>
+            <p>All ingredients are listed so you know you will not have any surprises.</p>
+        </div>
+        <div>
+            <span class="img-container">
+                <img src="../imgs/calendar.jpg" class="hiw-item">
+            </span>
+            <h4 class="featured">Choose you weekday for delivery</h4>
+            <p>We adapt our logistics to fulfill your needs, not the opposite. The delivery is
+                done in returnable refrigerated containers, this is for maximum freshness and
+                a more efficient environmental footprint. </p>
+        </div>
+    </div>
+
+</div>
+<div id="top-meals">
+    <div class="center">
+
+        <h3 class="big">Featured Recipes</h3>
+        <div class="horizontal-scroll">
+            {{#each data}}
+            {{#if featured}}
+            <div class="card">
+                <h4>{{title}}</h4>
+                <img src="../imgs/{{id}}_.jpg">
+                <p>{{description}}</p>
+                <p class="tags">Category: {{category}} </p>
+                <button>Subscribe</button>
+            </div>{{/if}}
+            {{/each}}
+        </div>
+    </div>
+
+</div>
