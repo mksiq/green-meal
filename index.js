@@ -14,7 +14,9 @@ app.engine('.hbs', expressHandleBars({
 app.set('view engine', '.hbs');
 
 function onHttpStart(){
-    console.log("Express http server listening on : " + HTTP_PORT + "http://localhost:8085");
+    console.log("Express http server listening on : " + HTTP_PORT);
+    if(HTTP_PORT == 8085)
+        console.log("click here to open browser: "  + "http://localhost:8085") ;
 }
 app.use(express.static(__dirname + '/public/'));
 
