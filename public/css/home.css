@@ -1,53 +1,53 @@
 /* Image sources:
 https://99designs.ca/blog/resources/public-domain-image-resources/ */
 
-/* https://colorhunt.co/palette/9506  Or https://colorhunt.co/palette/207323*/ 
+/* https://colorhunt.co/palette/9506  Or https://colorhunt.co/palette/207323*/
 
-html,body{
+html, body {
     height: 100%;
     width: 100%;
     margin: 0;
     font-family: 'Roboto', 'Courier New', Courier, monospace;
     color: #31887e;
- 
 }
 
-.mobile{
+.mobile {
     display: none;
 }
-.logo{
+
+.logo {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     font-style: italic;
     font-weight: bold;
-    
 }
 
-.white{
+.white {
     color: #FFF
 }
 
-header{
+header {
     display: flex;
     background-color: #3e978b;
     padding: 1% 0;
 }
 
-#cart{
+#cart {
     color: lightgrey;
 }
-/* Vertical Main Menu */
-@media only screen and (max-width: 599px) {
 
-    header{
+/* Vertical Main Menu */
+
+@media only screen and (max-width: 599px) {
+    header {
         flex-direction: column;
     }
-    #mobile-menu{
+    #mobile-menu {
         position: absolute;
         margin-top: 10%;
         margin-left: 5%;
         color: #FFF;
     }
-    #menu-bar{
+    #menu-bar {
         display: none;
         position: absolute;
         background-color: #FFF;
@@ -56,13 +56,13 @@ header{
         margin: 0;
         padding-top: 10%;
     }
-    .mobile{
+    .mobile {
         display: block;
     }
-    #menu-bar ul{
+    #menu-bar ul {
         padding: 2%;
     }
-    #menu-bar li{
+    #menu-bar li {
         padding: 2%;
         list-style: none;
         border-bottom: 1px solid;
@@ -71,26 +71,27 @@ header{
 }
 
 /* Horizontal Main Menu */
+
 @media only screen and (min-width: 600px) {
-    #menu-bar{
+    #menu-bar {
         background-color: #FFF;
         height: 100%;
         width: 80%;
         margin: 0;
-        border-radius:   0px 10px 10px 0px;
+        border-radius: 0px 10px 10px 0px;
     }
-    #menu-bar ul{
+    #menu-bar ul {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         justify-content: space-between;
         margin: 0;
         margin-right: 1%;
         padding: 2%;
-        grid-gap:  2em;
+        grid-gap: 2em;
     }
-    #menu-bar li{
+    #menu-bar li {
         display: flex;
-        width: 100%; 
+        width: 100%;
         height: 40px;
         padding: 5px;
         list-style: none;
@@ -99,130 +100,136 @@ header{
         text-align: center;
         grid-auto-rows: minmax(200px, auto);
     }
-    #menu-bar li p{
+    #menu-bar li p {
         margin: auto;
     }
-    
-    #menu-bar li:hover{
+    #menu-bar li:hover {
         color: #31887e;
         background-color: #eff48e;
         opacity: 80%;
-        border-color:  #31887e;
+        border-color: #31887e;
     }
-
-
-    .logo{
+    .logo {
         width: 20%;
         margin: auto;
     }
-    footer{
+    footer {
         margin-top: 1%;
     }
-    #footer-area{
-      
+    #footer-area {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        margin:auto;
-
+        margin: auto;
     }
-    #footer-area a{
+    #footer-area a {
         color: #31887e;
     }
 }
 
-a{
+a {
     color: black;
     text-decoration: none;
 }
+
 /* main content */
-main{
+
+main {
     width: 100%;
 }
 
 /* hero */
-#hero-div{
+
+#hero-div {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
 }
-.hero-item{
+
+.hero-item {
     margin: auto;
     text-align: center;
 }
 
-#many-vegetables{
+#many-vegetables {
     width: 100%;
 }
 
 /* How It works */
-#how-it-works{
 
+#how-it-works {
     margin-top: 0;
-    background-color: #eff48e ;
+    background-color: #eff48e;
     padding: 1%;
-
 }
-.a-grid{
+
+.a-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
-#how-it-works h3, #how-it-works h4, #how-it-works p, #top-meals h3, #top-meals h4{
+
+#how-it-works h3, #how-it-works h4, #how-it-works p, #top-meals h3, #top-meals h4 {
     text-align: center;
 }
-.big{
+
+.big {
     margin: 1%;
     font-size: 2.5em;
 }
 
-
 /* Top Featured Meals */
 
-
-.hiw-item{
+.hiw-item {
     border-radius: 22px 75px 45px;
     min-width: 280px;
     width: 20%;
     padding: 10px;
     background-color: #FFF;
 }
+
 .img-container {
     text-align: center;
     display: block;
 }
-h1{
+
+h1 {
     text-align: right;
     color: #FFF;
     margin-left: auto;
     margin-right: 20px;
     font-family: 'Roboto', 'Courier New', Courier, monospace;
 }
+
 /* footer */
-footer{
+
+footer {
     text-align: center;
     color: #31887e;
 }
-.featured{
+
+.featured {
     font-size: 2em;
     margin: 2% 0% 0% 0%;
     font-weight: 800;
 }
-.card{
+
+.card {
     min-width: 280px;
     width: 20%;
     text-align: center;
     background-color: #FFF;
     padding: 0 2%;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     margin-left: auto;
     margin-right: auto;
 }
 
-.card img{
+.card img {
     max-width: 95%;
 }
-.card button{
+
+.card button {
     border: none;
     border-radius: 5px;
     padding: 3% 9%;
@@ -232,70 +239,78 @@ footer{
     font-size: 1em;
     color: #FFF;
 }
-.card .tags{
+
+.card .tags {
     color: grey;
 }
-.card h4{
-   padding: 3% 0;
-   margin: 0;
-   color: #103d38;
 
+.card h4 {
+    padding: 3% 0;
+    margin: 0;
+    color: #103d38;
 }
-.h-item{
+
+.h-item {
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
     margin: auto;
 }
-.center{
+
+.center {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
-#top-meals{
+
+#top-meals {
     display: block;
-    background-color: #EFEFEF ;
+    background-color: #EFEFEF;
     padding: 3%;
     max-width: 100%;
 }
-.horizontal-scroll{
+
+.horizontal-scroll {
     margin-top: 2%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-auto-flow: row;
-    grid-gap:  1em;
+    grid-gap: 1em;
     grid-auto-rows: minmax(200px, auto);
 }
 
-.grid-on-the-menu{
+.grid-on-the-menu {
     margin-top: 2%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-auto-flow: row;
-    grid-gap:  1em;
+    grid-gap: 1em;
     grid-auto-rows: minmax(200px, auto);
 }
 
 /* LOGIN POP UP */
+
 /* Disable/Enable on click */
-.block-background, #login, #registration{
+
+.block-background, #login, #registration {
     display: none
 }
 
-.block-background{
+.block-background {
     width: 100%;
     height: 1000%;
     background-color: grey;
     opacity: 60%;
     position: absolute;
 }
-#login{
-    margin-top:50px;
-    margin-left:30%;
+
+#login {
+    margin-top: 50px;
+    margin-left: 30%;
     position: absolute;
     opacity: 100%;
-    background-color:#FFF;
+    background-color: #FFF;
     width: 40%;
     height: fit-content;
     padding: 2%;
@@ -303,7 +318,7 @@ footer{
     border-radius: 10px;
 }
 
-#loginDiv input{
+#loginDiv input {
     display: block;
     width: 300px;
     height: 20px;
@@ -311,9 +326,11 @@ footer{
     margin-left: auto;
     margin-right: auto;
 }
+
 #loginDiv p, #loginDiv h2 {
     text-align: center;
 }
+
 .formButtons {
     display: flex;
     flex-direction: row;
@@ -325,30 +342,34 @@ footer{
     font-weight: 800;
     height: fit-content;
 }
-.submitButtonsForm{
+
+.submitButtonsForm {
     border: none;
     padding: 10px;
     width: 100px;
     margin: 1%;
 }
-.confirm{
+
+.confirm {
     background-color: #31887e;
     color: #FFF;
 }
-.cancel{
+
+.cancel {
     background-color: #eff48e;
     color: #000;
 }
 
-
 /* REGISTRATION POP UP */
+
 /* Disable/Enable on click */
-#registration{
-    margin-top:50px;
-    margin-left:30%;
+
+#registration {
+    margin-top: 50px;
+    margin-left: 30%;
     position: absolute;
     opacity: 100%;
-    background-color:#FFF;
+    background-color: #FFF;
     width: 40%;
     height: fit-content;
     padding: 2%;
@@ -356,7 +377,7 @@ footer{
     border-radius: 10px;
 }
 
-#sign-up-div input{
+#sign-up-div input {
     display: block;
     width: 300px;
     height: 20px;
@@ -364,9 +385,11 @@ footer{
     margin-left: auto;
     margin-right: auto;
 }
+
 #registration p, #registration h2 {
     text-align: center;
 }
+
 /* Responsive degign:
 Small: under 600px.
 Medium: 600px – 900px.
