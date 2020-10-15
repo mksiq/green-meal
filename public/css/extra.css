@@ -1,0 +1,40 @@
+.bg-big-logo{
+    background-image: url("../imgs/background.jpg");
+}
+
+.logo {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.white {
+    color: #FFF
+}
+
+.hover-white:hover {
+    color: #eff48e;
+}
+
+.green-background{
+    background-color: #31887e;
+}
+
+.yellow-background {
+    background-color: #eff48e;
+}
+
+.grey-background {
+    background-color: #EFEFEF;
+}
+.green {
+    color: #31887e;
+}
+
+.hiw-leaf {
+    border-radius: 22px 75px 45px;
+    min-width: 280px;
+    width: 20%;
+    /* padding: 10px; */
+    background-color: #FFF;
+}

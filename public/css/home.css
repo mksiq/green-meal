@@ -15,28 +15,19 @@ html, body {
     display: none;
 }
 
-.logo {
-    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    font-style: italic;
-    font-weight: bold;
-}
 
-.white {
-    color: #FFF
-}
 
-header {
-    display: flex;
+/* header {
     background-color: #3e978b;
     padding: 1% 0;
 }
 
 #cart {
     color: lightgrey;
-}
+} */
 
 /* Vertical Main Menu */
-
+/* 
 @media only screen and (max-width: 599px) {
     header {
         flex-direction: column;
@@ -68,7 +59,7 @@ header {
         border-bottom: 1px solid;
         border-color: lightgrey;
     }
-}
+} */
 
 /* Horizontal Main Menu */
 
@@ -131,13 +122,12 @@ a {
     text-decoration: none;
 }
 
-/* main content */
+
 
 main {
     width: 100%;
 }
 
-/* hero */
 
 #hero-div {
     width: 100%;
@@ -156,7 +146,7 @@ main {
     width: 100%;
 }
 
-/* How It works */
+
 
 #how-it-works {
     margin-top: 0;
@@ -178,7 +168,6 @@ main {
     font-size: 2.5em;
 }
 
-/* Top Featured Meals */
 
 .hiw-item {
     border-radius: 22px 75px 45px;
@@ -201,7 +190,7 @@ h1 {
     font-family: 'Roboto', 'Courier New', Courier, monospace;
 }
 
-/* footer */
+
 
 footer {
     text-align: center;
@@ -214,7 +203,7 @@ footer {
     font-weight: 800;
 }
 
-.card {
+/* .card {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -243,7 +232,7 @@ footer {
     padding: 3% 0;
     margin: 0;
     color: #103d38;
-}
+} */
 
 .h-item {
     display: flex;
@@ -285,9 +274,7 @@ footer {
     margin-bottom: 2%;
 }
 
-/* LOGIN POP UP */
 
-/* Disable/Enable on click */
 
 .block-background, #login, #registration {
     display: none
