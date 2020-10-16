@@ -1,22 +1,23 @@
 <header>
-    {{>login}}
-    {{>registration}}
+    {{!-- {{>login}}
+    {{>registration}} --}}
 
     <nav class="navbar fixed-top navbar-expand-sm green-background">
         <button class="navbar-toggler" data-toggle="collapse" data-target="#menuBar2">
             <i class="material-icons white">menu</i></button>
-        <div class="collapse navbar-collapse justify-content-center" id="menuBar2">
+        <div class="collapse navbar-collapse justify-content-around" id="menuBar2">
             <ul class="navbar-nav ">
                 <li class="nav-item"><a href="/" class="nav-link white hover-white">HOME</a></li>
                 <li class="nav-item"> <a href="/on-the-menu" class="nav-link white hover-white">ON THE MENU</a></li>
-                <li class="nav-item"> <a href="/on-the-menu" class="nav-link white hover-white">SIGN UP</a></li>
-                <li class="nav-item"> <a href="/on-the-menu" class="nav-link white hover-white">LOGIN</a></li>
+                <li class="nav-item"> <a href=""  data-toggle="modal" data-target="#sign-up-modal" class="nav-link white hover-white">SIGN UP</a></li>
+                <li class="nav-item"> <a href=""  data-toggle="modal" data-target="#login-modal" class="nav-link white hover-white">LOGIN</a></li>
                 <li class="nav-item"><a href="/on-the-menu" class="nav-link disabled">CART</a></li>
             </ul>
         </div>
-        <a href="/" class="nav-brand logo white h4">greenMeal</a>
+        <a href="/" class="nav-brand logo white h4 hover-white">greenMeal</a>
     </nav>
 
+<button class="btn btn-info">Launch Modal</button>
 
 
     {{!-- <div id="menu-bar">

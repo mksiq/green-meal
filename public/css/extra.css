@@ -38,3 +38,13 @@
     /* padding: 10px; */
     background-color: #FFF;
 }
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000;
+    text-decoration: none;
+}

@@ -26,6 +26,12 @@ app.get("/", (req, res) =>  {
      { data: prod} );
 });
 
+app.get("/sign-up", (req, res) =>  {
+    let prod = require("./products.js").products;
+    res.render('temp',
+     { data: prod} );
+});
+
 app.get("/on-the-menu", (req, res) =>  {
     let prod = require("./products.js");
     let breakfast = prod.products.filter( (product) => { if(product.category == "Breakfast") return product});

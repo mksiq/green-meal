@@ -116,7 +116,7 @@ html, body {
         color: #31887e;
     }
 }
-
+/* 
 a {
     color: black;
     text-decoration: none;
@@ -126,9 +126,9 @@ a {
 
 main {
     width: 100%;
-}
+} */
 
-
+/* 
 #hero-div {
     width: 100%;
     display: flex;
@@ -201,7 +201,7 @@ footer {
     font-size: 2em;
     margin: 2% 0% 0% 0%;
     font-weight: 800;
-}
+} */
 
 /* .card {
     display: flex;
@@ -234,7 +234,7 @@ footer {
     color: #103d38;
 } */
 
-.h-item {
+/* .h-item {
     display: flex;
     text-align: center;
     align-items: center;
@@ -341,12 +341,12 @@ footer {
 .cancel {
     background-color: #eff48e;
     color: #000;
-}
+} */
 
 /* REGISTRATION POP UP */
 
 /* Disable/Enable on click */
-
+/* 
 #registration {
     margin-top: 50px;
     margin-left: 30%;
@@ -371,7 +371,7 @@ footer {
 
 #registration p, #registration h2 {
     text-align: center;
-}
+} */
 
 /* Meal details popup */
 

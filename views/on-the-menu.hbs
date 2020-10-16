@@ -1,3 +1,139 @@
+<div class="container-fluid grey-background mt-3 pt-3  w-100">
+    <div class="h2 green text-center mb-2 mt-0 font-weight-bold">Breakfast</div>
+    <div class="container-fluid">
+        <div class="row text-center d-flex justify-content-center text-center">
+            {{#each breakfastData}}
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
+                <div class="card text-center h-100 shadow">
+                    <div class="card-header h3 text-dark">{{title}}</div>
+                    <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
+                    <div class="card-body mb-0 pb-0">
+                        <p class="text-muted mt-0 mb-1">{{description}}</p>
+                        <p class="text-muted mt-0 mb-1">CAD$ <span
+                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                    </div>
+                    <div class="card-footer mt-0">
+                        <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""> +
+                                Details</a></p>
+                        <button class="btn btn-success">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid grey-background mt-0 pt-3  w-100">
+    <div class="h2 green text-center mb-2 mt-0 font-weight-bold">Dinner</div>
+    <div class="container-fluid">
+        <div class="row text-center d-flex justify-content-center text-center">
+            {{#each dinnerData}}
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
+                <div class="card text-center h-100 shadow">
+                    <div class="card-header h3 text-dark">{{title}}</div>
+                    <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
+                    <div class="card-body mb-0 pb-0">
+                        <p class="text-muted mt-0 mb-1">{{description}}</p>
+                        <p class="text-muted mt-0 mb-1">CAD$ <span
+                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                    </div>
+                    <div class="card-footer mt-0">
+                        <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""> +
+                                Details</a></p>
+                        <button class="btn btn-success">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid grey-background mt-0 pt-3  w-100">
+    <div class="h2 green text-center mb-2 mt-0 font-weight-bold">Salads</div>
+    <div class="container-fluid">
+        <div class="row text-center d-flex justify-content-center text-center">
+            {{#each saladsData}}
+           <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
+                <div class="card text-center h-100 shadow">
+                    <div class="card-header h3 text-dark">{{title}}</div>
+                    <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
+                    <div class="card-body mb-0 pb-0">
+                        <p class="text-muted mt-0 mb-1">{{description}}</p>
+                        <p class="text-muted mt-0 mb-1">CAD$ <span
+                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                    </div>
+                    <div class="card-footer mt-0">
+                        <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""> +
+                                Details</a></p>
+                        <button class="btn btn-success">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid grey-background mt-0 pt-3  w-100">
+    <div class="h2 green text-center mb-2 mt-0 font-weight-bold">Sandwiches and Burgers</div>
+    <div class="container-fluid">
+        <div class="row text-center d-flex justify-content-center text-center">
+            {{#each sandwichesData}}
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
+                <div class="card text-center h-100 shadow">
+                    <div class="card-header h3 text-dark">{{title}}</div>
+                    <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
+                    <div class="card-body mb-0 pb-0">
+                        <p class="text-muted mt-0 mb-1">{{description}}</p>
+                        <p class="text-muted mt-0 mb-1">CAD$ <span
+                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                    </div>
+                    <div class="card-footer mt-0">
+                        <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""> +
+                                Details</a></p>
+                        <button class="btn btn-success">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid grey-background mt-0 pt-3  w-100">
+    <div class="h2 green text-center mb-2 mt-0 font-weight-bold">Soups</div>
+    <div class="container-fluid">
+        <div class="row text-center d-flex justify-content-center text-center">
+            {{#each soupsData}}
+          <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
+                <div class="card text-center h-100 shadow">
+                    <div class="card-header h3 text-dark">{{title}}</div>
+                    <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
+                    <div class="card-body mb-0 pb-0">
+                        <p class="text-muted mt-0 mb-1">{{description}}</p>
+                        <p class="text-muted mt-0 mb-1">CAD$ <span
+                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                    </div>
+                    <div class="card-footer mt-0">
+                        <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""> +
+                                Details</a></p>
+                        <button class="btn btn-success">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
+
+{{!-- 
 <div id="top-meals">
     <div class="center">
         <h3 class="big">Breakfast</h3>
@@ -40,170 +176,4 @@
                 <button class="detail-button">Add to Cart</button>
             </div>
             {{/each}}
-        </div>
-        <h3 class="big">Dinner</h3>
-        <div class="grid-on-the-menu">
-            {{#each dinnerData}}
-            <div class="meal-details" style="display: none;" id="{{id}}detail">
-
-                <h4>{{title}}</h4>
-                <p>{{description}}</p>
-                <p>Ingredients: {{ingredients}}</p>
-                <p>CAD$ {{price}}</p>
-                <p>Cooking time: {{cookingTime}} minutes</p>
-                <p>Calories: {{calories}} kcal</p>
-                <p class="tags">Category: {{category}} </p>
-                <p>Available:
-                    {{#if available}}
-                    Yes
-                    {{#else}}
-                    No
-                    {{/else}}
-                    {{/if}}
-                </p>
-
-                <button class="detail-button">Add to Cart</button>
-                <button class="detail-button cancel" onclick="
-                    document.getElementById('{{id}}detail').style.display = 'none';
-                    ">Close</button>
-
-            </div>
-            <div class="card">
-                <h4>{{title}}</h4>
-                <img src="../imgs/{{id}}_.jpg">
-                <p>{{description}}</p>
-                <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}}</p>
-                <button class="detail-button cancel" onclick="
-                    document.getElementById('{{id}}detail').style.display = 'block';
-                ">+ Details</button>
-
-                <button class="detail-button">Add to Cart</button>
-            </div>
-            {{/each}}
-        </div>
-        <h3 class="big">Salads</h3>
-        <div class="grid-on-the-menu">
-            {{#each saladsData}}
-            <div class="meal-details" style="display: none;" id="{{id}}detail">
-
-                <h4>{{title}}</h4>
-                <p>{{description}}</p>
-                <p>Ingredients: {{ingredients}}</p>
-                <p>CAD$ {{price}}</p>
-                <p>Cooking time: {{cookingTime}} minutes</p>
-                <p>Calories: {{calories}} kcal</p>
-                <p class="tags">Category: {{category}} </p>
-                <p>Available:
-                    {{#if available}}
-                    Yes
-                    {{#else}}
-                    No
-                    {{/else}}
-                    {{/if}}
-                </p>
-
-                <button class="detail-button">Add to Cart</button>
-                <button class="detail-button cancel" onclick="
-                    document.getElementById('{{id}}detail').style.display = 'none';
-                    ">Close</button>
-
-            </div>
-            <div class="card">
-                <h4>{{title}}</h4>
-                <img src="../imgs/{{id}}_.jpg">
-                <p>{{description}}</p>
-                <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}}</p>
-                <button class="detail-button cancel" onclick="
-                    document.getElementById('{{id}}detail').style.display = 'block';
-                ">+ Details</button>
-
-                <button class="detail-button">Add to Cart</button>
-            </div>
-            {{/each}}
-        </div>
-        <h3 class="big">Sandwiches and Burgers</h3>
-        <div class="grid-on-the-menu">
-            {{#each sandwichesData}}
-            <div class="meal-details" style="display: none;" id="{{id}}detail">
-
-                <h4>{{title}}</h4>
-                <p>{{description}}</p>
-                <p>Ingredients: {{ingredients}}</p>
-                <p>CAD$ {{price}}</p>
-                <p>Cooking time: {{cookingTime}} minutes</p>
-                <p>Calories: {{calories}} kcal</p>
-                <p class="tags">Category: {{category}} </p>
-                <p>Available:
-                    {{#if available}}
-                    Yes
-                    {{#else}}
-                    No
-                    {{/else}}
-                    {{/if}}
-                </p>
-
-                <button class="detail-button">Add to Cart</button>
-                <button class="detail-button cancel" onclick="
-                    document.getElementById('{{id}}detail').style.display = 'none';
-                    ">Close</button>
-
-            </div>
-            <div class="card">
-                <h4>{{title}}</h4>
-                <img src="../imgs/{{id}}_.jpg">
-                <p>{{description}}</p>
-                <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}}</p>
-                <button class="detail-button cancel" onclick="
-                    document.getElementById('{{id}}detail').style.display = 'block';
-                ">+ Details</button>
-
-                <button class="detail-button">Add to Cart</button>
-            </div>
-            {{/each}}
-        </div>
-        <h3 class="big">Soups</h3>
-        <div class="grid-on-the-menu">
-            {{#each soupsData}}
-            <div class="meal-details" style="display: none;" id="{{id}}detail">
-
-                <h4>{{title}}</h4>
-                <p>{{description}}</p>
-                <p>Ingredients: {{ingredients}}</p>
-                <p>CAD$ {{price}}</p>
-                <p>Cooking time: {{cookingTime}} minutes</p>
-                <p>Calories: {{calories}} kcal</p>
-                <p class="tags">Category: {{category}} </p>
-                <p>Available:
-                    {{#if available}}
-                    Yes
-                    {{#else}}
-                    No
-                    {{/else}}
-                    {{/if}}
-                </p>
-
-                <button class="detail-button">Add to Cart</button>
-                <button class="detail-button cancel" onclick="
-                    document.getElementById('{{id}}detail').style.display = 'none';
-                    ">Close</button>
-
-            </div>
-            <div class="card">
-                <h4>{{title}}</h4>
-                <img src="../imgs/{{id}}_.jpg">
-                <p>{{description}}</p>
-                <p>CAD$ {{price}}</p>
-                <p class="tags">Category: {{category}}</p>
-                <button class="detail-button cancel" onclick="
-                    document.getElementById('{{id}}detail').style.display = 'block';
-                ">+ Details</button>
-
-                <button class="detail-button">Add to Cart</button>
-            </div>
-            {{/each}}
-        </div>
-    </div>
-</div>
+        </div> --}}
