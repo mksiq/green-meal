@@ -13,9 +13,55 @@
                                 class="text-danger font-weight-bold h4">{{price}}</span></p>
                     </div>
                     <div class="card-footer mt-0">
-                        <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""> +
+                        <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""
+                                data-toggle="modal" data-target="#card{{id}}-modal"> +
                                 Details</a></p>
                         <button class="btn btn-success">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            {{#each breakfastData}}
+            <div class="modal fade mt-5" id="card{{id}}-modal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="card text-center h-100 shadow">
+                            <div class="card-header h3 text-dark">{{title}}</div>
+                            <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
+                            <div class="card-body mb-0 pb-0">
+                                <p class="text-muted mt-0 mb-1">{{description}}</p>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="text-muted mt-0 mb-1">Ingredients: {{ingredients}}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-muted mt-0 mb-1">Cooking Time: {{cookingTime}}</p>
+                                        <p class="text-muted mt-0 mb-1">Calories: {{calories}} kcal</p>
+                                        <p>Available:
+                                            {{#if available}}
+                                            Yes
+                                            {{#else}}
+                                            No
+                                            {{/else}}
+                                            {{/if}}
+                                        </p>
+                                    </div>
+                                </div>
+
+
+
+                                <p class="text-muted mt-0 mb-1">CAD$ <span
+                                        class="text-danger font-weight-bold h4">{{price}}</span></p>
+                            </div>
+                            <div class="card-footer mt-0">
+                                <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""> +
+                                        Details</a></p>
+                                <button class="btn btn-success">Add to Cart</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -57,7 +103,7 @@
     <div class="container-fluid">
         <div class="row text-center d-flex justify-content-center text-center">
             {{#each saladsData}}
-           <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
                 <div class="card text-center h-100 shadow">
                     <div class="card-header h3 text-dark">{{title}}</div>
                     <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
@@ -110,7 +156,7 @@
     <div class="container-fluid">
         <div class="row text-center d-flex justify-content-center text-center">
             {{#each soupsData}}
-          <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
+            <div class="col-12 col-sm-8 col-md-4 col-lg-3 col-xl-2 mb-lg-4 mb-md-2 mb-sm-3 mb-3">
                 <div class="card text-center h-100 shadow">
                     <div class="card-header h3 text-dark">{{title}}</div>
                     <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">

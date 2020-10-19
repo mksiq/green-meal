@@ -7,7 +7,73 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form>
+
+
+             <form action="/register-user" method="POST">
+                <div class="form-row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input name="firstName" class="form-control" type="text" id="first-name" size="30"
+                                placeholder="Enter First Name" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input class="form-control" name="lastName" type="text" id="last-name" size="30"
+                                placeholder="Enter Last Name"  />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input class="form-control" name="email" type="text" id="email" size="30" placeholder="Enter e-mail" />
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input class="form-control" name="password" type="password" id="password" size="30"
+                                placeholder="Enter Password" />
+                            <small class="text-muted">Password must have at least 6 characters.</small>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input class="form-control" name="confirmPassword" type="password" id="confirm-password" size="30"
+                                placeholder="Enter Password" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-between">
+                    <div class="col-6 col-md-3"><input type="submit" class="btn btn-success form-control"
+                            value="Sign up!"></div>
+                    <div class="col-6 col-md-3"><input type="reset" class="btn btn-danger form-control" value="Clear!">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{{!-- 
+<div class="modal fade mt-5 " id="sign-up-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content p-4">
+            <div class="h3 text-center">
+                User Sign-Up
+                <button class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/register-user" method="POST" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
@@ -57,11 +123,44 @@
             </form>
         </div>
     </div>
+</div> --}}
+
+
+
+
+
+
+
+
+
+
+{{!-- <div class="block-background">
 </div>
-
-
-
-
+<div id="registration">
+    <form id="formId" method="POST" action="https://httpbin.org/post">
+        <div id="sign-up-div">
+            <h2>Sign Up</h2>
+            <p>Fist Name</p>
+            <p><input type="text" name="first-name" size="30" required /></p>
+            <p>Last Name</p>
+            <p><input type="text" name="last-name" size="30" required /></p>
+            <p>E-mail</p>
+            <p><input type="email" name="email" size="30" required /></p>
+            <p>Password:</p>
+            <p><input type="password" name="password" min="6" required /></p>
+        </div>
+        <p class="formButtons">
+            <input class="submitButtonsForm confirm" type="submit" name="submit" value="Sign" />
+            <input id="close-login-popup" class="submitButtonsForm cancel" type="reset" name="cancel" value="Close"
+            onclick="
+                    document.getElementsByClassName('block-background')[0].style.display = 'none';
+                    document.getElementById('registration').style.display = 'none';
+                    document.getElementsByTagName('html')[0].style.overflow = 'auto';
+            " />
+        </p>
+        <br>
+    </form>
+</div> --}}
 
 
 
