@@ -1,43 +1,56 @@
-<div class="modal fade mt-5" id="login-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content p-4">
-            <div class="h3 text-center">
-                User Login
-                <button class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form>
-                <div class="form-row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="first-name">E-mail</label>
-                            <input class="form-control" type="email" id="first-name" size="30"
-                                placeholder="Enter e-mail" required />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input class="form-control" type="password" id="password" size="30"
-                                placeholder="Enter Password" required />
-                        </div>
-                    </div>
-                </div>
+{{#if validation.error}}
+<div class="modal fade show mt-5 d-block" id="login-modal" tabindex="-1" role="dialog">
+    {{else}}
+    <div class="modal fade show mt-5 " id="login-modal" tabindex="-1" role="dialog">
+        {{/if}}
+        <div class="modal-dialog">
+            <div class="modal-content p-4">
+                <div class="h3 text-center">
+                    User Login
 
-                <div class="row justify-content-between">
-                    <div class="col-6 col-md-3"><input type="submit" class="btn btn-success form-control"
-                            value="Sign up!"></div>
-                    <div class="col-6 col-md-3"><input type="reset" class="btn btn-danger form-control" value="Clear!">
-                    </div>
+                    <button class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </form>
+                <form action="/user-login" method="POST">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="userEmail">E-mail</label>
+                                <input class="form-control" type="text" name="userEmail" size="30"
+                                    placeholder="Enter e-mail" value="{{loginValues.userEmail}}" />
+                                {{#if validation.userEmail}}
+                                <label for="userEmail" class="text-danger mt-0">{{validation.userEmail}}</label>
+                                {{/if}}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input class="form-control" type="password" name="password" size="30"
+                                    placeholder="Enter Password" value="{{loginValues.password}}" />
+                                {{#if validation.userEmail}}
+                                <label for="userEmail" class="text-danger mt-0">{{validation.password}}</label>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-between">
+                        <div class="col-6 col-md-3"><input type="submit" class="btn btn-success form-control"
+                                value="Login!"></div>
+                        <div class="col-6 col-md-3"><input type="reset" class="btn btn-danger form-control"
+                                value="Clear!">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-{{!-- 
+    {{!-- 
 
 <div class="block-background">
 </div>
