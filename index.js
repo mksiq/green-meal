@@ -50,6 +50,7 @@ app.get("/on-the-menu", (req, res) => {
 
     res.render('on-the-menu',
         {
+            data: prod.products,
             breakfastData: breakfast,
             dinnerData: dinner,
             saladsData: salads,
