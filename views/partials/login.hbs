@@ -1,8 +1,7 @@
-{{#if validation.error}}
-<div class="modal fade show mt-5 d-block" id="login-modal" tabindex="-1" role="dialog">
-    {{else}}
+{{!-- http://jsbin.com/upINuh/3/edit?html,output --}}
+
+
     <div class="modal fade show mt-5 " id="login-modal" tabindex="-1" role="dialog">
-        {{/if}}
         <div class="modal-dialog">
             <div class="modal-content p-4">
                 <div class="h3 text-center">
@@ -31,7 +30,7 @@
                                 <label for="password">Password</label>
                                 <input class="form-control" type="password" name="password" size="30"
                                     placeholder="Enter Password" value="{{loginValues.password}}" />
-                                {{#if validation.userEmail}}
+                                {{#if validation.password}}
                                 <label for="userEmail" class="text-danger mt-0">{{validation.password}}</label>
                                 {{/if}}
                             </div>
@@ -41,35 +40,16 @@
                     <div class="row justify-content-between">
                         <div class="col-6 col-md-3"><input type="submit" class="btn btn-success form-control"
                                 value="Login!"></div>
-                        <div class="col-6 col-md-3"><input type="reset" class="btn btn-danger form-control"
-                                value="Clear!">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    {{!-- 
 
-<div class="block-background">
-</div>
-<div id="login">
-    <form id="formId" method="POST" action="https://httpbin.org/post">
-        <div id="loginDiv">
-            <h2>Login</h2>
-            <p>E-mail</p>
-            <p><input type="email" name="email" size="30" required /></p>
-            <p>Password:</p>
-            <p><input type="password" name="password" min="6" required /></p>
-        </div>
-        <p class="formButtons">
-            <input class="submitButtonsForm confirm" type="submit" name="submit" value="Submit" />
-            <input id="close-login-popup" class="submitButtonsForm cancel" type="reset" name="cancel" value="Close"
-            onclick="
-                    document.getElementsByClassName('block-background')[0].style.display = 'none';
-                    document.getElementById('login').style.display = 'none';
-                    document.getElementsByTagName('html')[0].style.overflow = 'auto';
-            " />
-        </p>
-    </form>
-</div> --}}
+{{#if validation.error}}
+    <script type="text/javascript">
+    var myModal = document.getElementById("login-modal");
+    $(myModal).modal('show');
+  </script>
+{{/if}}
