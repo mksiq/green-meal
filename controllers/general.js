@@ -99,7 +99,7 @@ router.post("/register-user", (req, res) => {
                 <br>
                 <p>Thank you for signing up on our website.</p>
                 <br>
-                <p>Please access this link to make your orders.: <a href="https://murmuring-brook-93964.herokuapp.com/"> greenMeal</a></p>
+                <p>Please access this link to make your orders.: <a href="https://green-meal.herokuapp.com/"> greenMeal</a></p>
                 <br>
                 <h2 style="color: #31887e">greenMeal</h2>
                 `
