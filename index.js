@@ -43,7 +43,7 @@ app.use("/on-the-menu", onTheMenu);
 
 app.use((req, res) => {
     if (res.status(404))
-        res.render("error");
+        res.render("general/error");
 });
 
 app.listen(HTTP_PORT, onHttpStart);

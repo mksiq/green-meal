@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
     let sandwiches = prod.products.filter((product) => { if (product.category == "Sandwiches") return product });
     let soups = prod.products.filter((product) => { if (product.category == "Soups") return product });
 
-    res.render('on-the-menu',
+    res.render('general/on-the-menu',
         {
             data: prod.products,
             breakfastData: breakfast,

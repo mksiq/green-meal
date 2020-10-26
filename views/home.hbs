@@ -38,7 +38,8 @@
                     <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
                     <div class="card-footer mt-0">
                         <p class="text-muted mt-0 mb-1">CAD$ <span class="text-danger font-weight-bold h4">{{price}}</span></p>
-                          <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""> + Details</a></p>
+                          <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""
+                                data-toggle="modal" data-target="#card{{id}}-modal"> + Details</a></p>
                         <button class="btn btn-success">Add to Cart</button>
                     </div>
                 </div>
@@ -48,3 +49,42 @@
         </div>
     </div>
 </div>
+
+{{#each data}}
+<div class="modal fade mt-5" id="card{{id}}-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card text-center h-100 shadow">
+                <div class="card-header h3 text-dark">{{title}}</div>
+                <img src="/imgs/{{id}}_.jpg" alt="Picture of {{title}}" class="card-img-top">
+                <div class="card-body mb-0 pb-0">
+                    <p class="text-muted mt-0 mb-1">{{description}}</p>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="text-muted mt-0 mb-1">Ingredients: {{ingredients}}</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted mt-0 mb-1">Cooking Time: {{cookingTime}}</p>
+                            <p class="text-muted mt-0 mb-1">Calories: {{calories}} kcal</p>
+                        </div>
+                    </div>
+                    <p class="text-muted mt-0 mb-1">CAD$ <span class="text-danger font-weight-bold h4">{{price}}</span>
+                    </p>
+                </div>
+                <div class="card-footer mt-0">
+                    <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}} Available:
+                            {{#if available}}
+                            <span class="text-success"> Yes</span>
+                            {{#else}}
+                            <span class="text-danger"> No</span>
+                            {{/else}}
+                            {{/if}}</span>
+                    </p>
+                    <button class="btn btn-success">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}

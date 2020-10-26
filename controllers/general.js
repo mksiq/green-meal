@@ -63,7 +63,7 @@ router.post("/register-user", (req, res) => {
     if (!firstName) {
         validationSign.firstName = "First Name is mandatory.";
         valid = false;
-        validationSign.error = true;
+        validationSign.signUpError = true;
     }
 
     if (!lastName) {
@@ -86,7 +86,7 @@ router.post("/register-user", (req, res) => {
         validationSign.password = "Please type a password"
         valid = false;
         validationSign.error = true;
-    } else if(!password.match(/^[a-zA-Z0-9]{6,12}$/) || !password.match(/[0-9]/)  || !password.match(/[a-zA-Z]/)){
+    } else if (!password.match(/^[a-zA-Z0-9]{6,12}$/) || !password.match(/[0-9]/) || !password.match(/[a-zA-Z]/)) {
         validationSign.password = "Must have between 6 and 12 chars. Only letters and numbers, at least one of each.";
         valid = false;
         validationSign.error = true;
@@ -95,7 +95,7 @@ router.post("/register-user", (req, res) => {
         validationSign.confirmPassword = "Please confirm password.";
         valid = false;
         validationSign.error = true;
-    } else if (password != confirmPassword){
+    } else if (password != confirmPassword) {
         validationSign.confirmPassword = "Passwords do not match.";
         valid = false;
         validationSign.error = true;
@@ -117,30 +117,10 @@ router.post("/register-user", (req, res) => {
             }
         });
 
-        res.render("home");
+        res.render("general/sign-up-success", {
+            user: req.body});
     } else {
-        function openModal() {
-            document.getElementById("backdrop").style.display = "block"
-            document.getElementById("login-modal").style.display = "block"
-            document.getElementById("login-modal").className += "show"
-        }
-        function closeModal() {
-            document.getElementById("backdrop").style.display = "none"
-            document.getElementById("login-modal").style.display = "none"
-            document.getElementById("login-modal").className += document.getElementById("login-modal").className.replace("show", "")
-        }
-        // Get the modal
-        var modal = document.getElementById('login-modal');
-        
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                closeModal()
-            }
-        }
-        
-
-            res.render("home", {
+        res.render("home", {
             validationSign: validationSign,
             signUpValues: req.body
         });
