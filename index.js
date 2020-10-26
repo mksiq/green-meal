@@ -1,12 +1,8 @@
 // https://murmuring-brook-93964.herokuapp.com/ | https://git.heroku.com/murmuring-brook-93964.git
-
-
-// add models folder and put products in
 let express = require("express");
 let HTTP_PORT = process.env.PORT || 8085;
 
 let app = express();
-
 
 const dotenv = require('dotenv');
 dotenv.config({path:"./config/keys.env"});
@@ -21,6 +17,7 @@ app.engine('.hbs', expressHandleBars({
     extname: '.hbs',
     defaultLayout: 'main'
 }));
+
 app.set('view engine', '.hbs');
 
 function onHttpStart() {

@@ -10,10 +10,10 @@
   "author": "Maickel Siqueira",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.3.0",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-handlebars": "^5.1.0",
-    "nodemailer": "^6.4.14"
+    "express-handlebars": "^5.1.0"
   }
 }

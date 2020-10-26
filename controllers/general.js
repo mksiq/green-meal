@@ -7,7 +7,6 @@ router.get("/", (req, res) => {
         { data: prod });
 });
 
-
 router.post("/user-login", (req, res) => {
     let validation = {};
     validation.error = false;
@@ -23,7 +22,6 @@ router.post("/user-login", (req, res) => {
         validation.error = true;
         valid = false;
     }
-
     if (!password) {
         validation.password = "You must specify your password.";
         valid = false;
@@ -44,34 +42,22 @@ router.post("/user-login", (req, res) => {
     }
 });
 
-var nodemailer = require("nodemailer");
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'greenmealburner@gmail.com',
-        pass: process.env.EMAIL_PW // 
-    }
-});
-
 router.post("/register-user", (req, res) => {
     let validationSign = {};
     validationSign.error = false;
     let valid = true;
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
-
     if (!firstName) {
         validationSign.firstName = "First Name is mandatory.";
         valid = false;
         validationSign.signUpError = true;
     }
-
     if (!lastName) {
         validationSign.lastName = "Last Name is mandatory.";
         valid = false;
         validationSign.error = true;
     };
-
     if (!email) {
         validationSign.email = "Email is mandatory.";
         valid = false;
@@ -101,24 +87,40 @@ router.post("/register-user", (req, res) => {
         validationSign.error = true;
     }
     if (valid) {
+        const sgMail = require("@sendgrid/mail");
+        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
-        var emailOptions = {
-            from: 'greenmealburner@gmail.com',
+        const msg = {
             to: email,
+            from: 'greenmealburner@gmail.com',
             subject: 'Welcome to greenMeal',
-            html: `<h3 style="color: #31887e">Hello, ${firstName} </h3><p>Thank-you for signing up on our website.</p><br><p>Please access this link: <a href="https://murmuring-brook-93964.herokuapp.com/">to make your orders.</a></p>`
+            html:
+                `<h3 style="color: #31887e">Hello, ${firstName} </h3>
+                <br>
+                <p>Thank you for signing up on our website.</p>
+                <br>
+                <p>Please access this link to make your orders.: <a href="https://murmuring-brook-93964.herokuapp.com/"> greenMeal</a></p>
+                <br>
+                <h2 style="color: #31887e">greenMeal</h2>
+                `
         };
 
-        transporter.sendMail(emailOptions, (error, info) => {
-            if (error) {
-                console.log("ERROR: " + error);
-            } else {
-                console.log("SUCCESS: " + info.response);
-            }
+        sgMail.send(msg)
+        .then(() => {
+            res.render("general/sign-up-success", {
+                user: req.body});
+        })
+        .catch(err => {
+            console.log(`Error ${err}`);
+
+            res.render("home", {
+                title: "Contact Us Page",
+                validationSign: validationSign,
+                signUpValues: req.body
+            });
         });
 
-        res.render("general/sign-up-success", {
-            user: req.body});
+        
     } else {
         res.render("home", {
             validationSign: validationSign,
