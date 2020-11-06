@@ -7,6 +7,34 @@ router.get("/", (req, res) => {
         { data: prod });
 });
 
+
+//MongoDB Resources - Rep
+const mongoose = require("mongoose");
+
+mongoose.connect(
+    process.env.MONGO_DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+});
+
+// BCrypt
+let bcrypt = require('bcryptjs');
+
+const Schema = mongoose.Schema;
+
+const UserSchema = new Schema({
+    "email": {
+        "type": String,
+        "unique": true
+    },
+    "password": String,
+    "firstName": String,
+    "lastName": String
+});
+
+let UserModel = mongoose.model("users", UserSchema);
+
 router.post("/user-login", (req, res) => {
     let validation = {};
     validation.error = false;
@@ -31,9 +59,48 @@ router.post("/user-login", (req, res) => {
         valid = false;
         validation.error = true;
     }
-    console.log(validation)
     if (valid) {
-        res.render("home");
+        UserModel.find({
+            email: userEmail
+        })
+            .exec()
+            .then( (data) => {
+
+                
+                if(data[0]){
+                    console.log(data[0]);
+                    let hash = data[0].password;
+    
+                    console.log("Password is :" + hash)
+    
+    
+                     if(bcrypt.compareSync(password, data[0].password)){
+                         console.log("Password matches");
+                         res.render("home");
+                     } else {
+                         console.log("Password DOES NOT match");
+                         validation.password = "Wrong password. Please try again.";
+                         validation.error = true;
+                         res.render("home", {
+                            validation: validation,
+                            loginValues: req.body
+                        });
+                     }
+                } else {
+                    //Didn't find the email
+                    console.log("Wrong password. Please try again");
+                    validation.userEmail = "User not found.";
+                    validation.error = true;
+
+                    res.render("home", {
+                        validation: validation,
+                        loginValues: req.body
+                    });
+                }
+
+
+            });
+
     } else {
         res.render("home", {
             validation: validation,
@@ -87,15 +154,36 @@ router.post("/register-user", (req, res) => {
         validationSign.error = true;
     }
     if (valid) {
-        const sgMail = require("@sendgrid/mail");
-        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
-        const msg = {
-            to: email,
-            from: 'greenmealburner@gmail.com',
-            subject: 'Welcome to greenMeal',
-            html:
-                `<h3 style="color: #31887e">Hello, ${firstName} </h3>
+        // salt password
+        let salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(password, salt);
+
+        //save user #TODO break into functions
+
+        let newUser = new UserModel({
+            firstName: firstName,
+            lastName: lastName,
+            password: hash,
+            email: email
+        });
+
+        newUser.save((err) => {
+            if (err) {
+                console.log("DB ERROR! Couldn't create the new user: " + err);
+                 // DB ERROR! Couldn't create the new user: MongoError: E11000 duplicate key error collection: green-meal.users index: email_1 dup key: { email: "maickelsiqueira@gmail.com" }
+            } else {
+                console.log("Successfully created a new user: " + newUser);
+                //sendEmail  #TODO break into functions
+                const sgMail = require("@sendgrid/mail");
+                sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
+                const msg = {
+                    to: email,
+                    from: 'greenmealburner@gmail.com',
+                    subject: 'Welcome to greenMeal',
+                    html:
+                        `<h3 style="color: #31887e">Hello, ${firstName} </h3>
                 <br>
                 <p>Thank you for signing up on our website.</p>
                 <br>
@@ -103,24 +191,31 @@ router.post("/register-user", (req, res) => {
                 <br>
                 <h2 style="color: #31887e">greenMeal</h2>
                 `
-        };
+                };
 
-        sgMail.send(msg)
-        .then(() => {
-            res.render("general/sign-up-success", {
-                user: req.body});
+                sgMail.send(msg)
+                    .then(() => {
+                        res.render("general/sign-up-success", {
+                            user: req.body
+                        });
+                    })
+                    .catch(err => {
+                        console.log(`Error ${err}`);
+
+                        res.render("home", {
+                            title: "Contact Us Page",
+                            validationSign: validationSign,
+                            signUpValues: req.body
+                        });
+                    });
+            }
+
         })
-        .catch(err => {
-            console.log(`Error ${err}`);
 
-            res.render("home", {
-                title: "Contact Us Page",
-                validationSign: validationSign,
-                signUpValues: req.body
-            });
-        });
 
-        
+
+
+
     } else {
         res.render("home", {
             validationSign: validationSign,

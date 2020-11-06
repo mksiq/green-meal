@@ -7,11 +7,13 @@ let app = express();
 const dotenv = require('dotenv');
 dotenv.config({path:"./config/keys.env"});
 
+
+
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var expressHandleBars = require('express-handlebars');
+let expressHandleBars = require('express-handlebars');
 
 app.engine('.hbs', expressHandleBars({
     extname: '.hbs',
