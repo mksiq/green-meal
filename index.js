@@ -1,26 +1,23 @@
 // https://murmuring-brook-93964.herokuapp.com/ | https://git.heroku.com/green-meal.git | https://git.heroku.com/murmuring-brook-93964.git
-let express = require("express");
-let HTTP_PORT = process.env.PORT || 8085;
-
-let app = express();
-
 const dotenv = require('dotenv');
+let express = require("express");
+let expressHandleBars = require('express-handlebars');
+const bodyParser = require('body-parser');
+const generalController = require("./controllers/general");
+const userController = require("./controllers/user");
+const onTheMenu = require("./controllers/on-the-menu");
+
 dotenv.config({path:"./config/keys.env"});
 
-
-
-const bodyParser = require('body-parser');
-
+let app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
-
-let expressHandleBars = require('express-handlebars');
-
 app.engine('.hbs', expressHandleBars({
     extname: '.hbs',
     defaultLayout: 'main'
 }));
-
 app.set('view engine', '.hbs');
+
+let HTTP_PORT = process.env.PORT;
 
 function onHttpStart() {
     console.log("Express http server listening on : " + HTTP_PORT);
@@ -30,15 +27,12 @@ function onHttpStart() {
 
 app.use(express.static(__dirname + '/public/'));
 
-const generalController = require("./controllers/general");
-const onTheMenu = require("./controllers/on-the-menu");
 
 app.use("/", generalController);
 
 app.use("/on-the-menu", onTheMenu);
 
-
-// app.get("/cart", (req, res) => res.sendFile(path.join(__dirname, "/views/cart.html")));
+app.use("/", userController);
 
 app.use((req, res) => {
     if (res.status(404))
