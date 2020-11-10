@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
-dotenv.config({path:"./config/keys.env"});
+dotenv.config({ path: "./config/keys.env" });
 // const UserModel = require("../models/user"); //Check MVC
 
 
@@ -52,13 +52,22 @@ router.post("/user-login", (req, res) => {
     if (valid) {
         UserModel.find({
             email: userEmail
-        })
-            .exec()
+        }).exec()
             .then((data) => {
                 if (data[0]) {
                     if (bcrypt.compareSync(password, data[0].password)) {
+                        // Password matches
+                        // Create an object to pass to user page only what is necessary
+                        // no need to pass id nor hash
+                        const loggedUser = {};
+                        loggedUser.firstName = data[0].firstName;
+                        loggedUser.lastName = data[0].lastName;
+                        loggedUser.email = data[0].email;
+                        loggedUser.confirmPassword = "";
                         console.log("Password matches");
-                        res.render("general/home");
+                        res.render("user/profile-page", {
+                            updateUser: loggedUser
+                        });
                     } else {
                         // wrong password
                         console.log("Password DOES NOT match");
@@ -92,7 +101,7 @@ router.post("/user-login", (req, res) => {
 
 
 
-function validateEmail(userEmail, validation, valid){
+function validateEmail(userEmail, validation, valid) {
     if (!userEmail) {
         validation.userEmail = "You must specify your e-mail.";
         valid = false;
@@ -105,7 +114,7 @@ function validateEmail(userEmail, validation, valid){
     }
 }
 
-function validatePassword(password, validation, valid){
+function validatePassword(password, validation, valid) {
     if (!password) {
         validation.password = "You must specify your password.";
         valid = false;
@@ -142,7 +151,7 @@ router.post("/register-user", (req, res) => {
         newUser.save((err) => {
             if (err) {
                 console.log(err.code);
-                if(err.code == 11000){
+                if (err.code == 11000) {
                     // err is: MongoError: E11000 duplicate key error collection: green-meal.users index: email_1 dup key: { email: "kiwi@gmail.com" }
                     // Code 11000 is duplicated key
                     validationSign.email = "Email is already registered.";
@@ -200,7 +209,7 @@ router.post("/register-user", (req, res) => {
 });
 
 
-function confirmUserData(firstName, lastName, email, password, confirmPassword, validationSign, valid){
+function confirmUserData(firstName, lastName, email, password, confirmPassword, validationSign, valid) {
     if (!firstName) {
         validationSign.firstName = "First Name is mandatory.";
         valid = false;
