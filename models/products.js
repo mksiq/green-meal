@@ -1,4 +1,54 @@
-module.exports.products = [
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const productSchema = new Schema({
+    title:{
+        type: String,
+        required: true
+    },
+    ingredients: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number
+    },
+    cookingTime: {
+        type: Number
+    },
+    calories: {
+        type: Number
+    },
+    featured: {
+        type: Boolean,
+        default: false
+    },
+    available: {
+        type: Boolean,
+        default: true
+    },
+    dateCreated: {
+        type: Date,
+        default: Date.now()
+    },
+    createdBy: {
+        type: Number,
+        default: 1
+    }
+});
+
+const productModel = mongoose.model("Products", productSchema);
+
+// Initial data on database
+let products = [
     {
         id: 1,
         title: "Pumpkin Soup",
@@ -144,3 +194,42 @@ module.exports.products = [
         available: true
     },
 ];
+
+
+//Script to be run once:
+
+const dotenv = require('dotenv');
+dotenv.config({ path: "./config/keys.env" });
+
+mongoose.connect(
+    process.env.MONGO_DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+});
+
+//Insert all script. Do not uncomment
+// saveProducts(products);
+function saveProducts(productList){
+    productList.forEach( product => {
+        const newProduct = new productModel({
+            title: product.title,
+            ingredients: product.title,
+            description: product.description,
+            category: product.category,
+            price: product.price,
+            cookingTime: product.cookingTime,
+            calories: product.calories,
+            featured: product.featured,
+            available: product.available
+        });
+        newProduct.save( (err) => {
+            if(err)
+                console.log(err)
+            else
+                console.log(`${newProduct.title} Added to db`);
+        })
+    });
+}
+
+module.exports = productModel;
