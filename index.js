@@ -7,6 +7,12 @@ const generalController = require("./controllers/general");
 const userController = require("./controllers/user");
 const onTheMenu = require("./controllers/on-the-menu");
 
+
+// TODO file upload
+// const fileUpload = require('express-fileupload');
+
+const session = require('express-session');
+
 dotenv.config({path:"./config/keys.env"});
 
 let app = express();
@@ -18,6 +24,18 @@ app.engine('.hbs', expressHandleBars({
 app.set('view engine', '.hbs');
 
 let HTTP_PORT = process.env.PORT;
+
+
+app.use(session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: true,
+}))
+
+app.use((req, res ,next)=>{
+    res.locals.user = req.session.user;
+    next();
+});
 
 function onHttpStart() {
     console.log("Express http server listening on : " + HTTP_PORT);

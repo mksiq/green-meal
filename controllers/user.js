@@ -1,10 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const dotenv = require('dotenv');
-dotenv.config({ path: "./config/keys.env" });
-// const UserModel = require("../models/user"); //Check MVC
+const express = require("express");
+const mongoose = require("mongoose");
+const router = express.Router();
 
+dotenv.config({ path: "./config/keys.env" });
+const userModel = require('../models/user');
 
 //MongoDB Resources - Rep
 mongoose.connect(
@@ -14,70 +15,52 @@ mongoose.connect(
     useCreateIndex: true
 });
 
-const Schema = mongoose.Schema;
-
-const UserSchema = new Schema({
-    "email": {
-        "type": String,
-        "unique": true,
-        "required": true
-    },
-    "password": {
-        "type": String,
-        "required": true
-    },
-    "firstName": {
-        "type": String,
-        "required": true
-    },
-    "lastName": {
-        "type": String,
-        "required": true
-    }
-});
-
-let UserModel = mongoose.model("users", UserSchema);
-
-let bcrypt = require('bcryptjs');
-
+//Login
 router.post("/user-login", (req, res) => {
     let validation = {};
     validation.error = false;
     const { userEmail, password } = req.body;
     let valid = true;
-
     validateEmail(userEmail, validation, valid);
     validatePassword(password, validation, valid);
-
     if (valid) {
-        UserModel.find({
+        userModel.findOne({
             email: userEmail
         }).exec()
-            .then((data) => {
-                if (data[0]) {
-                    if (bcrypt.compareSync(password, data[0].password)) {
-                        // Password matches
-                        // Create an object to pass to user page only what is necessary
-                        // no need to pass id nor hash
-                        const loggedUser = {};
-                        loggedUser.firstName = data[0].firstName;
-                        loggedUser.lastName = data[0].lastName;
-                        loggedUser.email = data[0].email;
-                        loggedUser.confirmPassword = "";
-                        console.log("Password matches");
-                        res.render("user/profile-page", {
-                            updateUser: loggedUser
-                        });
-                    } else {
-                        // wrong password
-                        console.log("Password DOES NOT match");
-                        validation.password = "Wrong password. Please try again.";
-                        validation.error = true;
-                        res.render("general/home", {
-                            validation: validation,
-                            loginValues: req.body
-                        });
-                    }
+            .then((user) => {
+                if (user) {
+                    bcrypt.compare(password, user.password)
+                        .then((matches) => {
+                            if (matches) {
+                                // Password matches
+                                // Remove hash from user object
+                                user.password = "";
+                                // Establish Session
+                                req.session.user = user;
+                                console.log(user)
+                                res.render("user/profile-page", {
+                                    user: user
+                                });
+                            }
+                            else {
+                                // wrong password
+                                console.log("Password DOES NOT match");
+                                validation.password = "Wrong password. Please try again.";
+                                validation.error = true;
+                                res.render("general/home", {
+                                    validation: validation,
+                                    loginValues: req.body
+                                });
+                            }
+                        }).catch((err) => {
+                            // Couldn't compare the passwords.
+                            console.log`Error comparing passwords: ${err}.`;
+                            validation.password = "Something went wrong. Please try again";
+                            res.render("general/home", {
+                                validation: validation,
+                                loginValues: req.body
+                            });
+                        })
                 } else {
                     //Didn't find the email
                     validation.userEmail = "User not found.";
@@ -89,43 +72,38 @@ router.post("/user-login", (req, res) => {
                     });
                 }
             });
-
-    } else {
+    }
+    else {
+        // invalid data
         res.render("general/home", {
-            // invalid data
             validation: validation,
             loginValues: req.body
         });
     }
 });
 
+//Logout
+router.get("/logout", (req, res) => {
+    req.session.destroy();
+
+    let prod = require("../models/products.js").products;
+    res.render('general/home',
+        { data: prod });
+})
+
+//Profile Page
+router.get("/profile", (req, res) => {
+    //TODO check requirements, not necessary to update user data
+    
+    res.render("user/profile-page", {
 
 
-function validateEmail(userEmail, validation, valid) {
-    if (!userEmail) {
-        validation.userEmail = "You must specify your e-mail.";
-        valid = false;
-        validation.error = true;
-    } else if (!userEmail.match(/^[a-z0-9.!#$%&'*+\-\/=?^_`{|}~]+@(?=[a-z0-9])(?:[a-z0-9]|(?<![.-])\.|(?<!\.)-)*[a-z0-9]$/)) {
-        // regex copied from https://rgxdb.com/r/5TT0B86O
-        validation.userEmail = "Invalid email.";
-        validation.error = true;
-        valid = false;
-    }
-}
+        user : req.session.user,
+        updateUser : req.session.user
+    });
+})
 
-function validatePassword(password, validation, valid) {
-    if (!password) {
-        validation.password = "You must specify your password.";
-        valid = false;
-        validation.error = true;
-    } else if (password.length < 6 || password.length > 12) {
-        validation.password = "Invalid password.";
-        valid = false;
-        validation.error = true;
-    }
-}
-
+// Sign up
 router.post("/register-user", (req, res) => {
     console.log("Values" + req.body)
 
@@ -137,17 +115,12 @@ router.post("/register-user", (req, res) => {
     confirmUserData(firstName, lastName, email, password, confirmPassword, validationSign, valid);
 
     if (valid) {
-        // salt password
-        let salt = bcrypt.genSaltSync(10);
-        let hash = bcrypt.hashSync(password, salt);
-        //save user #TODO break into functions
-        let newUser = new UserModel({
+        const newUser = new userModel({
             firstName: firstName,
             lastName: lastName,
-            password: hash,
+            password: password,
             email: email
         });
-
         newUser.save((err) => {
             if (err) {
                 console.log(err.code);
@@ -174,13 +147,13 @@ router.post("/register-user", (req, res) => {
                     subject: 'Welcome to greenMeal',
                     html:
                         `<h3 style="color: #31887e">Hello, ${firstName} </h3>
-                <br>
-                <p>Thank you for signing up on our website.</p>
-                <br>
-                <p>Please access this link to make your orders.: <a href="https://green-meal.herokuapp.com/"> greenMeal</a></p>
-                <br>
-                <h2 style="color: #31887e">greenMeal</h2>
-                `
+                        <br>
+                        <p>Thank you for signing up on our website.</p>
+                        <br>
+                        <p>Please access this link to make your orders.: <a href="https://green-meal.herokuapp.com/"> greenMeal</a></p>
+                        <br>
+                        <h2 style="color: #31887e">greenMeal</h2>
+                        `
                 };
 
                 sgMail.send(msg)
@@ -208,6 +181,31 @@ router.post("/register-user", (req, res) => {
     }
 });
 
+// Validations functions
+function validateEmail(userEmail, validation, valid) {
+    if (!userEmail) {
+        validation.userEmail = "You must specify your e-mail.";
+        valid = false;
+        validation.error = true;
+    } else if (!userEmail.match(/^[a-z0-9.!#$%&'*+\-\/=?^_`{|}~]+@(?=[a-z0-9])(?:[a-z0-9]|(?<![.-])\.|(?<!\.)-)*[a-z0-9]$/)) {
+        // regex copied from https://rgxdb.com/r/5TT0B86O
+        validation.userEmail = "Invalid email.";
+        validation.error = true;
+        valid = false;
+    }
+}
+
+function validatePassword(password, validation, valid) {
+    if (!password) {
+        validation.password = "You must specify your password.";
+        valid = false;
+        validation.error = true;
+    } else if (password.length < 6 || password.length > 12) {
+        validation.password = "Invalid password.";
+        valid = false;
+        validation.error = true;
+    }
+}
 
 function confirmUserData(firstName, lastName, email, password, confirmPassword, validationSign, valid) {
     if (!firstName) {
