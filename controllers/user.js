@@ -26,7 +26,7 @@ router.post("/user-login", (req, res) => {
     if (valid) {
         userModel.findOne({
             email: userEmail
-        }).exec()
+        }).lean().exec()
             .then((user) => {
                 if (user) {
                     bcrypt.compare(password, user.password)
@@ -37,10 +37,13 @@ router.post("/user-login", (req, res) => {
                                 user.password = "";
                                 // Establish Session
                                 req.session.user = user;
-                                console.log(user)
-                                res.render("user/profile-page", {
-                                    user: user
-                                });
+                                if(user && user.isDataClerk){
+                                    console.log("logged as data clerk user");
+                                    res.redirect("/data-clerk");        
+                                } else {          
+                                    console.log("logged as regular user");
+                                    res.redirect("/profile");
+                                }
                             }
                             else {
                                 // wrong password
@@ -85,22 +88,47 @@ router.post("/user-login", (req, res) => {
 //Logout
 router.get("/logout", (req, res) => {
     req.session.destroy();
-
-    let prod = require("../models/products.js").products;
-    res.render('general/home',
-        { data: prod });
+    res.redirect('/');
 })
 
-//Profile Page
+// Regular User Profile Page
 router.get("/profile", (req, res) => {
     //TODO check requirements, not necessary to update user data
+    let user = req.session.user;
+    if (user && !(user.isDataClerk)){    
+        res.render("user/profile-page", {
+            loggedUser : user
+        });        
+    } else {
+        res.redirect('/');
+    }
+})
+
+// Data Clerk 
+router.get("/data-clerk", (req, res) => {
+    let user = req.session.user;
+    if(user && user.isDataClerk){    
+        const productModel = require("../models/products.js");
+
+        productModel.find().lean().exec()
+            .then(products => {
+                if (products) {
+                    let user = req.session.user;
+                    if(user && user.isDataClerk){
+                        console.log(products);
+                        res.render("user/data-clerk", {
+                            user : user,
+                            data: products
+                        });        
+                } else {
+                    console.log("Error loading database");
+                }
+            }});
     
-    res.render("user/profile-page", {
-
-
-        user : req.session.user,
-        updateUser : req.session.user
-    });
+        
+    } else {
+        res.redirect('/');
+    }
 })
 
 // Sign up

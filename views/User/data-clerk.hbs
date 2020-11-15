@@ -1,0 +1,60 @@
+<div class="container">
+
+    <div class="h2 text-success mt-5  text-center">This is your data clerk page, {{user.firstName}}
+        {{user.lastName}}.</div>
+    <br>
+    <div class="h1 text-center">Manage products:</div>
+    <div class="text-center"><div class="text-danger">CRUD functionalities NOT implemented yet.</div></div>
+    <br>
+    <form action="/update-products" method="POST">
+        <table class="table table-hover table-sm ">
+            <thead>
+                <tr class="row d-flex">
+                    <th scope="col" class="col-1">Title</th>
+                    <th scope="col" class="col-2">Description</th>
+                    <th scope="col" class="col-2">Ingredients</th>
+                    <th scope="col" class="col-1">Category</th>
+                    <th scope="col" class="col-1">Price</th>
+                    <th scope="col" class="col-1">CookTime</th>
+                    <th scope="col" class="col-1">Kcal</th>
+                    <th scope="col" class="col-1">Featured</th>
+                    <th scope="col" class="col-1">Available</th>
+                    <th scope="col" class="col-1">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr class="row d-flex">
+                    <td scope="row" class="col-1"><input type="text" name="nickname" value="{{title}}" class="p-1 form-control input-sm"/></td>
+                    <td class="col-2"><input type="text" name="nickname" value="{{description}}" class="p-1 form-control input-sm"/></td>
+                    <td class="col-2"><input type="text" name="nickname" value="{{ingredients}}" class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="text" name="nickname" value="{{category}}" class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="text" name="nickname" value="{{price}}" class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="text" name="nickname" value="{{cookingTime}}" class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="text" name="nickname" value="{{calories}}" class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="checkbox" name="nickname" {{#if featured}}checked{{/if}}  class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="checkbox" name="nickname" {{#if available}}checked{{/if}}  class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><button type="submit" class="btn btn-secondary disabled" >Update</button></td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+        <form action="/create-product" method="POST">
+          <table class="table table-hover table-sm ">
+                <tr class="row d-flex">
+                    <td scope="row" class="col-1"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
+                    <td class="col-2"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
+                    <td class="col-2"><input type="text" name="nickname" class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="text" name="nickname" class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="checkbox" name="nickname"  class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><input type="checkbox" name="nickname"   class="p-1 form-control input-sm"/></td>
+                    <td class="col-1"><button type="submit" class="btn btn-secondary disabled">Create</button></td>
+                </tr>
+          </table>
+        </form>
+    </form>
+</div>

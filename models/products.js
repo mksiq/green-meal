@@ -209,12 +209,12 @@ mongoose.connect(
 });
 
 //Insert all script. Do not uncomment
-// saveProducts(products);
+//saveProducts(products);
 function saveProducts(productList){
     productList.forEach( product => {
         const newProduct = new productModel({
             title: product.title,
-            ingredients: product.title,
+            ingredients: product.ingredients,
             description: product.description,
             category: product.category,
             price: product.price,

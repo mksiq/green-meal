@@ -9,16 +9,21 @@
                 {{#if user}}
                 {{!-- Based on sessions --}}
                     <li class="nav-item"> <a href="/logout" class="nav-link white hover-white">LOGOUT</a></li>
-                    <li class="nav-item"> <a href="/profile"  d class="nav-link white hover-white">PROFILE</a></li>
+                        {{#if user.isDataClerk}}
+                            <li class="nav-item"> <a href="/data-clerk" class="nav-link white hover-white">MANAGE</a></li>
+                        {{else}}
+                            <li class="nav-item"> <a href="/profile" class="nav-link white hover-white">PROFILE</a></li>
+                        {{/if}}
                 {{else}}
-                    <li class="nav-item"> <a href=""  data-toggle="modal" data-target="#sign-up-modal" class="nav-link white hover-white">SIGN UP</a></li>
-                    <li class="nav-item"> <a href=""  data-toggle="modal" data-target="#login-modal" class="nav-link white hover-white">LOGIN</a></li>
+                <li class="nav-item"> <a href="" data-toggle="modal" data-target="#sign-up-modal"
+                        class="nav-link white hover-white">SIGN UP</a></li>
+                <li class="nav-item"> <a href="" data-toggle="modal" data-target="#login-modal"
+                        class="nav-link white hover-white">LOGIN</a></li>
                 {{/if}}
                 <li class="nav-item"><a href="/on-the-menu" class="nav-link disabled">CART</a></li>
             </ul>
         </div>
         <a href="/" class="nav-brand logo white h4 hover-white">greenMeal</a>
     </nav>
-
-<button class="btn btn-info">Launch Modal</button>
+    <button class="btn btn-info">Launch Modal</button>
 </header>

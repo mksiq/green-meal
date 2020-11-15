@@ -20,6 +20,11 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    isDataClerk: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     dateCreated: {
         type: Date,
         default: Date.now()
