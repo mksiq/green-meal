@@ -109,13 +109,11 @@ router.get("/data-clerk", (req, res) => {
     let user = req.session.user;
     if(user && user.isDataClerk){    
         const productModel = require("../models/products.js");
-
         productModel.find().lean().exec()
             .then(products => {
                 if (products) {
                     let user = req.session.user;
                     if(user && user.isDataClerk){
-                        console.log(products);
                         res.render("user/data-clerk", {
                             user : user,
                             data: products

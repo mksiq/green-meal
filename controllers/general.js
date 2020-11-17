@@ -3,7 +3,6 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
     const productModel = require("../models/products.js");
-
     productModel.find().lean().exec()
         .then(products => {
             if (products) {
