@@ -96,8 +96,7 @@ router.get("/profile", (req, res) => {
     //TODO check requirements, not necessary to update user data
     let user = req.session.user;
     if (user && !(user.isDataClerk)){
-        console.log(user)
-        res.render("user/profile-page", {
+        res.render("User/profile-page", {
             loggedUser : user
         });        
     } else {
@@ -115,7 +114,7 @@ router.get("/data-clerk", (req, res) => {
                 if (products) {
                     let user = req.session.user;
                     if(user && user.isDataClerk){
-                        res.render("user/data-clerk", {
+                        res.render("User/data-clerk", {
                             user : user,
                             data: products
                         });        
