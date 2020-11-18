@@ -95,7 +95,8 @@ router.get("/logout", (req, res) => {
 router.get("/profile", (req, res) => {
     //TODO check requirements, not necessary to update user data
     let user = req.session.user;
-    if (user && !(user.isDataClerk)){    
+    if (user && !(user.isDataClerk)){
+        console.log(user)
         res.render("user/profile-page", {
             loggedUser : user
         });        
