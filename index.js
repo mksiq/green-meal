@@ -1,4 +1,4 @@
-// https://murmuring-brook-93964.herokuapp.com/ | https://git.heroku.com/green-meal.git | https://git.heroku.com/murmuring-brook-93964.git
+// https://murmuring-brook-93964.herokuapp.com/ | https://git.heroku.com/green-meal.git 
 const dotenv = require('dotenv');
 let express = require("express");
 let expressHandleBars = require('express-handlebars');
