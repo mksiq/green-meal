@@ -20,10 +20,10 @@ router.post("/user-login", (req, res) => {
     let validation = {};
     validation.error = false;
     const { userEmail, password } = req.body;
-    let valid = true;
-    validateEmail(userEmail, validation, valid);
-    validatePassword(password, validation, valid);
-    if (valid) {
+    let validEmail = validateEmail(userEmail, validation);
+    let validPassword = validatePassword(password, validation);
+    
+    if (validEmail && validPassword) {
         userModel.findOne({
             email: userEmail
         }).lean().exec()
@@ -38,10 +38,10 @@ router.post("/user-login", (req, res) => {
                                 // Establish Session
                                 req.session.user = user;
                                 if(user && user.isDataClerk){
-                                    console.log("logged as data clerk user");
+                                    console.log("Logged as data clerk user");
                                     res.redirect("/data-clerk");        
                                 } else {          
-                                    console.log("logged as regular user");
+                                    console.log("Logged as regular user");
                                     res.redirect("/profile");
                                 }
                             }
@@ -66,9 +66,9 @@ router.post("/user-login", (req, res) => {
                         })
                 } else {
                     //Didn't find the email
-                    validation.userEmail = "User not found.";
+                    if(!validation.userEmail) // this if deals with the change the email was empty
+                        validation.userEmail = "User not found.";
                     validation.error = true;
-
                     res.render("general/home", {
                         validation: validation,
                         loginValues: req.body
@@ -131,15 +131,11 @@ router.get("/data-clerk", (req, res) => {
 
 // Sign up
 router.post("/register-user", (req, res) => {
-    console.log("Values" + req.body)
-
     let validationSign = {};
     validationSign.error = false;
-    let valid = true;
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
-    confirmUserData(firstName, lastName, email, password, confirmPassword, validationSign, valid);
-
+    let valid = confirmUserData(firstName, lastName, email, password, confirmPassword, validationSign);
     if (valid) {
         const newUser = new userModel({
             firstName: firstName,
@@ -149,7 +145,6 @@ router.post("/register-user", (req, res) => {
         });
         newUser.save((err) => {
             if (err) {
-                console.log(err.code);
                 if (err.code == 11000) {
                     // err is: MongoError: E11000 duplicate key error collection: green-meal.users index: email_1 dup key: { email: "kiwi@gmail.com" }
                     // Code 11000 is duplicated key
@@ -208,7 +203,8 @@ router.post("/register-user", (req, res) => {
 });
 
 // Validations functions
-function validateEmail(userEmail, validation, valid) {
+function validateEmail(userEmail, validation) {
+    let valid = true;
     if (!userEmail) {
         validation.userEmail = "You must specify your e-mail.";
         valid = false;
@@ -219,9 +215,11 @@ function validateEmail(userEmail, validation, valid) {
         validation.error = true;
         valid = false;
     }
+    return valid;
 }
 
-function validatePassword(password, validation, valid) {
+function validatePassword(password, validation) {
+    let valid = true;
     if (!password) {
         validation.password = "You must specify your password.";
         valid = false;
@@ -231,9 +229,11 @@ function validatePassword(password, validation, valid) {
         valid = false;
         validation.error = true;
     }
+    return valid;
 }
 
-function confirmUserData(firstName, lastName, email, password, confirmPassword, validationSign, valid) {
+function confirmUserData(firstName, lastName, email, password, confirmPassword, validationSign) {
+    let valid = true;
     if (!firstName) {
         validationSign.firstName = "First Name is mandatory.";
         valid = false;
@@ -272,6 +272,7 @@ function confirmUserData(firstName, lastName, email, password, confirmPassword, 
         valid = false;
         validationSign.error = true;
     }
+    return valid;
 }
 
 module.exports = router;
