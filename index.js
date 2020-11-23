@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const generalController = require("./controllers/general");
 const userController = require("./controllers/user");
 const onTheMenu = require("./controllers/on-the-menu");
-
+const productController = require("./controllers/products")
 
 // TODO file upload
 // const fileUpload = require('express-fileupload');
@@ -51,6 +51,8 @@ app.use("/", generalController);
 app.use("/on-the-menu", onTheMenu);
 
 app.use("/", userController);
+
+app.use("/", productController);
 
 app.use((req, res) => {
     if (res.status(404))
