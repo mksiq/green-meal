@@ -4,27 +4,59 @@
         {{user.lastName}}.</div>
     <br>
     <div class="h1 text-center">Manage products in database:</div>
-    <div class="text-center"><div class="text-danger">CRUD functionalities NOT implemented yet.</div></div>
+    <div class="text-center">
+        <div class="text-danger">CRUD functionalities NOT implemented yet.</div>
+    </div>
     <br>
     <form action="/update-products" method="POST">
-        <table class="table table-hover table-sm ">
+        <table class="table table-hover table-xs ">
             <thead>
-                <tr class="row d-flex">
-                    <th scope="col" class="col-1">Title</th>
-                    <th scope="col" class="col-2">Description</th>
-                    <th scope="col" class="col-2">Ingredients</th>
-                    <th scope="col" class="col-1">Category</th>
-                    <th scope="col" class="col-1">Price</th>
-                    <th scope="col" class="col-1">CookTime</th>
-                    <th scope="col" class="col-1">Kcal</th>
-                    <th scope="col" class="col-1">Featured</th>
-                    <th scope="col" class="col-1">Available</th>
-                    <th scope="col" class="col-1">Action</th>
+                <tr class="row">
+                    <th scope="col" class="col-4 col-md-2   col-lg-1">Title</th>
+                    <th scope="col" class="                 col-lg-2 d-none d-lg-block">Description</th>
+                    <th scope="col" class="                 col-lg-2 d-none d-lg-block">Ingredients</th>
+                    <th scope="col" class="      col-md-2   col-lg-1 d-none d-md-block">Category</th>
+                    <th scope="col" class="col-4 col-md-1">Price</th>
+                    <th scope="col" class="      col-md-2   col-lg-1 d-none d-md-block">CookTime</th>
+                    <th scope="col" class="                 col-lg-1 d-none d-lg-block">Kcal</th>
+                    <th scope="col" class="      col-md-2   col-lg-1 d-none d-md-block">Featured</th>
+                    <th scope="col" class="      col-md-2   col-lg-1 d-none d-md-block">Available</th>
+                    <th scope="col" class="col-4 col-md-1">Action</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each data}}
+                <tr class="row ">
+                    <td scope="row"
+                        class="col-4 col-md-2   col-lg-1">{{title}}</td>
+                    <td class="                 col-lg-2 d-none d-lg-block">{{description}}</td>
+                    <td class="                 col-lg-2 d-none d-lg-block">{{ingredients}}</td>
+                    <td class="      col-md-2   col-lg-1 d-none d-md-block">{{category}}</td>
+                    <td class="col-4 col-md-1">{{price}}</td>
+                    <td class="      col-md-2   col-lg-1 d-none d-md-block">{{cookingTime}}</td>
+                    <td class="                 col-lg-1 d-none d-lg-block">{{calories}}</td>
+                    <td class="      col-md-2   col-lg-1 d-none d-md-block">{{#if featured}}<i class="fa fa-check"></i>{{/if}}</td>
+                    <td class="      col-md-2   col-lg-1 d-none d-md-block">{{#if available}}<i class="fa fa-check"></i>{{/if}}</td>
+                    <td class="col-4 col-md-1"><button type="submit" class="btn btn-secondary disabled">Update</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <form action="/create-product" method="POST">
+         <table class="table table-hover table-xs ">
+               
                 <tr class="row d-flex">
+                    <td scope="row" class="col"><i class="fa fa-plus"></i></td>
+                    <td class="col col-sm-6 col-lg-10"></td>
+                    <td class="col"><button type="submit" class="btn btn-secondary disabled">Create</button></td>
+                </tr>
+            </table>
+        </form>
+    </form>
+</div>
+
+
+{{!-- <tr class="row d-flex">
                     <td scope="row" class="col-1"><input type="text" name="nickname" value="{{title}}" class="p-1 form-control input-sm"/></td>
                     <td class="col-2"><input type="text" name="nickname" value="{{description}}" class="p-1 form-control input-sm"/></td>
                     <td class="col-2"><input type="text" name="nickname" value="{{ingredients}}" class="p-1 form-control input-sm"/></td>
@@ -35,26 +67,4 @@
                     <td class="col-1"><input type="checkbox" name="nickname" {{#if featured}}checked{{/if}}  class="p-1 form-control input-sm"/></td>
                     <td class="col-1"><input type="checkbox" name="nickname" {{#if available}}checked{{/if}}  class="p-1 form-control input-sm"/></td>
                     <td class="col-1"><button type="submit" class="btn btn-secondary disabled" >Update</button></td>
-                </tr>
-                {{/each}}
-
-            </tbody>
-        </table>
-        <form action="/create-product" method="POST">
-          <table class="table table-hover table-sm ">
-                <tr class="row d-flex">
-                    <td scope="row" class="col-1"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
-                    <td class="col-2"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
-                    <td class="col-2"><input type="text" name="nickname" class="p-1 form-control input-sm"/></td>
-                    <td class="col-1"><input type="text" name="nickname" class="p-1 form-control input-sm"/></td>
-                    <td class="col-1"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
-                    <td class="col-1"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
-                    <td class="col-1"><input type="text" name="nickname"  class="p-1 form-control input-sm"/></td>
-                    <td class="col-1"><input type="checkbox" name="nickname"  class="p-1 form-control input-sm"/></td>
-                    <td class="col-1"><input type="checkbox" name="nickname"   class="p-1 form-control input-sm"/></td>
-                    <td class="col-1"><button type="submit" class="btn btn-secondary disabled">Create</button></td>
-                </tr>
-          </table>
-        </form>
-    </form>
-</div>
+                </tr> --}}
