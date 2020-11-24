@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 {{#each data}}
-                 <form action="/update-product" method="POST">
+                 <form action="/update-product-view" method="POST">
                     <tr class="row ">
                         <td scope="row"
                             class="col-4 col-md-2   col-lg-1">{{title}}</td>
@@ -43,7 +43,7 @@
                 {{/each}}
             </tbody>
         </table>
-        <form action="/create-product" method="POST">
+        <form action="/create-product" method="GET">
          <table class="table table-hover table-xs ">   
             <tr class="row d-flex">
                 <td scope="row" class="col"><i class="fa fa-plus"></i></td>

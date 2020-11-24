@@ -7,9 +7,7 @@ const generalController = require("./controllers/general");
 const userController = require("./controllers/user");
 const onTheMenu = require("./controllers/on-the-menu");
 const productController = require("./controllers/products")
-
-// TODO file upload
-// const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload');
 
 const session = require('express-session');
 
@@ -25,6 +23,7 @@ app.set('view engine', '.hbs');
 
 let HTTP_PORT = process.env.PORT;
 
+app.use(fileUpload());
 
 app.use(session({
     secret: process.env.SESSION_KEY,
