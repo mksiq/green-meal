@@ -1,0 +1,120 @@
+<div class="container mt-4">
+    <div class="h2 text-center mt-2">Update product:</div>
+    <div class="small text-center  text-muted">Id: {{product._id}}</div>
+
+      <form action="/update-product" method="POST" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input name="title" id="title" class="form-control" type="text" size="30"
+                        placeholder="Enter a title" value="{{product.title}}" />
+                    {{#if validation.title}}
+                    <small for="title" class="text-danger mt-0">{{validation.title}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" type="text" id="description"
+                        placeholder="Enter Description" />{{product.description}}</textarea>
+                    {{#if validation.description}}
+                    <small for="description" class="text-danger mt-0">{{validation.description}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="ingredients">Ingredients</label>
+                    <textarea class="form-control" name="ingredients" id="ingredients" type="text" id="ingredients"
+                        placeholder="Enter Ingredients" />{{product.ingredients}}</textarea>
+                    {{#if validation.ingredients}}
+                    <small for="ingredients" class="text-danger mt-0">{{validation.ingredients}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input class="form-control" name="price" id="price" type="number" id="price"
+                        placeholder="Enter Price" value="{{product.price}}" />
+                    {{#if validation.price}}
+                    <small for="price" class="text-danger mt-0">{{validation.price}}</small>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" class="form-control">
+                        <option value="Soup">Soup</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
+                    {{#if validation.category}}
+                    <small for="category" class="text-danger mt-0">{{validation.category}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="cookingTime">Cooking Time</label>
+                    <input class="form-control" name="cookingTime" type="number" id="cookingTime"
+                        placeholder="Enter Cooking Time" value="{{product.cookingTime}}" />
+                    {{#if validation.cookingTime}}
+                    <small for="cookingTime" class="text-danger mt-0">{{validation.cookingTime}}</small>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="calories">Calories</label>
+                    <input class="form-control" name="calories" type="number" id="calories" placeholder="Enter Calories"
+                        value="{{product.calories}}" />
+                    {{#if validation.calories}}
+                    <small for="calories" class="text-danger mt-0">{{validation.calories}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-6">
+                <div class="form-check">
+                    <label class="form-check-label" for="featured">
+                        <input class="form-check-input" type="checkbox" id="featured" name="featured" value="true"
+                            {{#if product.featured}}checked{{/if}} />Featured
+                    </label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-check">
+                    <label class="form-check-label" for="available">
+                        <input class="form-check-input" type="checkbox" id="available" name="available" value="true"
+                            {{#if product.available}}checked{{/if}} />Available
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12">
+                <div class="form-group">
+                    <input type="file" class="form-control-file" id="picture" name="picture">
+                </div>
+            </div>
+        </div>
+        <br>
+        <input type="hidden" name="_id" id="_id" value="{{product._id}}">
+        <div class="row justify-content-between">
+            <div class="col-6 col-md-3"><input type="submit" class="btn btn-success form-control" value="Update"></div>
+            {{!-- <div class="col-6 col-md-3"><input type="submit" class="btn btn-danger form-control" value="Delete"></div> --}}
+        </div>
+    </form>
+</div>
