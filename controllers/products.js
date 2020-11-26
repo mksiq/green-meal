@@ -122,34 +122,15 @@ router.post("/insert-product", (req, res) => {
     }
 })
 
-router.delete("/insert-product", (req, res) => {
+router.get("/delete-product/:id", (req, res) => {
     let user = req.session.user;
     if (user && user.isDataClerk) {
-        const { title, description, available, featured, ingredients, category, price, cookingTime, calories } = req.body;
-
-        const newProduct = new ProductModel({
-            title: title,
-            description: description,
-            available: available,
-            featured: featured,
-            ingredients: ingredients,
-            category: category,
-            price: price,
-            cookingTime: cookingTime,
-            calories: calories
-        });
-
-        newProduct.save().then((productSaved) => {
-            // this will rename every file to be named as the id and replace extension to jpg 
-            if (req.files) {
-                req.files.picture.name = `${productSaved._id}.jpg`;
-                req.files.picture.mv(`public/imgs/products/${req.files.picture.name}`);
-            }
-            console.log("Product saved in Database");
+        ProductModel.deleteOne({
+            _id: req.params.id
+        }).exec()
+        .then(() => {
+            console.log(`${req.params.id} removed from product database.`);
             res.redirect("/data-clerk");
-        }).catch((err) => {
-            console.error(`Error inserting the product in the database.  ${err}`);
-            res.redirect("/");
         });
     } else {
         res.redirect('/');
