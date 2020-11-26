@@ -1,8 +1,6 @@
 <div class="container mt-4">
-    <div class="h2 text-center mt-2">Update product:</div>
-    <div class="small text-center  text-muted">Id: {{product._id}}</div>
-
-    <form action="/update-product" method="POST" enctype="multipart/form-data">
+    <div class="h2 text-center mt-2">Insert new product:</div>
+    <form action="/insert-product" method="POST" enctype="multipart/form-data">
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
@@ -54,11 +52,11 @@
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select name="category" class="form-control">
-                        <option value="Breakfast" {{#if product.Breakfast}}selected{{/if}}>Breakfast</option>
-                        <option value="Dinner" {{#if product.Dinner}}selected{{/if}}>Dinner</option>
-                        <option value="Salads" {{#if product.Salads}}selected{{/if}}>Salad</option>
-                        <option value="Sandwiches" {{#if product.Sandwiches}}selected{{/if}}>Sandwich</option>
-                        <option value="Soups" {{#if product.Soups}}selected{{/if}}>Soup</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Dinners">Dinner</option>
+                        <option value="Salads">Salads</option>
+                        <option value="Sandwiches">Sandwiches</option>
+                        <option value="Soups">Soups</option>
                     </select>
                     {{#if validation.category}}
                     <small for="category" class="text-danger mt-0">{{validation.category}}</small>
@@ -69,7 +67,7 @@
         <div class="form-row">
             <div class="col-12 col-md-6">
                 <div class="form-group">
-                    <label for="cookingTime">Cooking Time</label>
+                    <label for="cookingTime">Cooking Time (minutes)</label>
                     <input class="form-control" name="cookingTime" type="number" id="cookingTime"
                         placeholder="Enter Cooking Time" value="{{product.cookingTime}}" />
                     {{#if validation.cookingTime}}
@@ -110,15 +108,14 @@
         <div class="form-row">
             <div class="col-12">
                 <div class="form-group">
+                    <label for="picture">Picture</label>
                     <input type="file" class="form-control-file" id="picture" name="picture">
                 </div>
             </div>
         </div>
         <br>
-        <input type="hidden" name="_id" id="_id" value="{{product._id}}">
         <div class="row justify-content-between">
             <div class="col-6 col-md-3"><input type="submit" class="btn btn-success form-control" value="Update"></div>
-            {{!-- <div class="col-6 col-md-3"><input type="submit" class="btn btn-danger form-control" value="Delete"></div> --}}
         </div>
     </form>
 </div>

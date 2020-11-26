@@ -6,11 +6,11 @@ router.get("/", (req, res) => {
     productModel.find().lean().exec()
         .then( products => {
             if(products){
-                let breakfast = products.filter((product) => { if (product.category == "Breakfast") return product });
-                let dinner = products.filter((product) => { if (product.category == "Dinner") return product });
-                let salads = products.filter((product) => { if (product.category == "Salads") return product });
-                let sandwiches = products.filter((product) => { if (product.category == "Sandwiches") return product });
-                let soups = products.filter((product) => { if (product.category == "Soups") return product });
+                let breakfast = products.filter((product) => { if (product.category.toLowerCase() == "breakfast") return product });
+                let dinner = products.filter((product) => { if (product.category.toLowerCase() == "dinner") return product });
+                let salads = products.filter((product) => { if (product.category.toLowerCase() == "salads") return product });
+                let sandwiches = products.filter((product) => { if (product.category.toLowerCase() == "sandwiches") return product });
+                let soups = products.filter((product) => { if (product.category.toLowerCase() == "soups") return product });
             
                 res.render('general/on-the-menu',
                     {
