@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description" type="text" id="description"
-                        placeholder="Enter Description" />{{product.description}}</textarea>
+                        placeholder="Enter Description"  required/>{{product.description}}</textarea>
                     {{#if validation.description}}
                     <small for="description" class="text-danger mt-0">{{validation.description}}</small>
                     {{/if}}
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="ingredients">Ingredients</label>
                     <textarea class="form-control" name="ingredients" id="ingredients" type="text" id="ingredients"
-                        placeholder="Enter Ingredients" />{{product.ingredients}}</textarea>
+                        placeholder="Enter Ingredients" required/>{{product.ingredients}}</textarea>
                     {{#if validation.ingredients}}
                     <small for="ingredients" class="text-danger mt-0">{{validation.ingredients}}</small>
                     {{/if}}
@@ -51,7 +51,7 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="category">Category</label>
-                    <select name="category" class="form-control">
+                    <select name="category" class="form-control"  required>
                         <option value="Breakfast">Breakfast</option>
                         <option value="Dinners">Dinner</option>
                         <option value="Salads">Salads</option>
@@ -69,7 +69,7 @@
                 <div class="form-group">
                     <label for="cookingTime">Cooking Time (minutes)</label>
                     <input class="form-control" name="cookingTime" type="number" id="cookingTime"
-                        placeholder="Enter Cooking Time" value="{{product.cookingTime}}" />
+                        placeholder="Enter Cooking Time" value="{{product.cookingTime}}"  required />
                     {{#if validation.cookingTime}}
                     <small for="cookingTime" class="text-danger mt-0">{{validation.cookingTime}}</small>
                     {{/if}}
@@ -79,7 +79,7 @@
                 <div class="form-group">
                     <label for="calories">Calories</label>
                     <input class="form-control" name="calories" type="number" id="calories" placeholder="Enter Calories"
-                        value="{{product.calories}}" />
+                        value="{{product.calories}}"  required />
                     {{#if validation.calories}}
                     <small for="calories" class="text-danger mt-0">{{validation.calories}}</small>
                     {{/if}}
@@ -115,7 +115,7 @@
             <div class="col-12 col-md-6">
                 <label for="servings">Servings</label>
                     <input class="form-control" name="servings" type="number" id="servings"
-                        placeholder="Enter Servings" value="{{product.servings}}" />
+                        placeholder="Enter Servings" value="{{product.servings}}"  required />
                     {{#if validation.servings}}
                     <small for="servings" class="text-danger mt-0">{{validation.servings}}</small>
                     {{/if}}
