@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const path = require("path");
+const fileSystem = require("fs");
 
 dotenv.config({ path: "./config/keys.env" });
 const ProductModel = require('../models/products');
@@ -120,10 +121,7 @@ router.post("/insert-product", (req, res) => {
             if (req.files) {
 
                 const extension = path.parse(req.files.picture.name).ext;
-                console.log(extension);
-
                 if([".jpg", ".jpeg", ".png", ".gif", ".bmp"].some( (ext) => ext === extension )){
-                    console.log("extension matches");
                     req.files.picture.name = `${productSaved._id}.jpg`;
                     req.files.picture.mv(`public/imgs/products/${req.files.picture.name}`);
                 } else {
@@ -144,13 +142,24 @@ router.post("/insert-product", (req, res) => {
 router.get("/delete-product/:id", (req, res) => {
     let user = req.session.user;
     if (user && user.isDataClerk) {
+
         ProductModel.deleteOne({
             _id: req.params.id
         }).exec()
         .then(() => {
+            // delete image from server 
+            try{
+                fileSystem.unlinkSync(`public/imgs/products/${req.params.id}.jpg`)
+            } catch(err) {
+                console.log("No image to delete");
+            }
+
             console.log(`${req.params.id} removed from product database.`);
             res.redirect("/data-clerk");
         });
+
+
+
     } else {
         res.redirect('/');
     }
