@@ -94,31 +94,6 @@
                 </div>
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="category">Category</label>
-                        <select name="category" class="form-control">
-                            <option value="Breakfast" {{#if product.Breakfast}}selected{{/if}}>Breakfast</option>
-                            <option value="Dinner" {{#if product.Dinner}}selected{{/if}}>Dinner</option>
-                            <option value="Salads" {{#if product.Salads}}selected{{/if}}>Salad</option>
-                            <option value="Sandwiches" {{#if product.Sandwiches}}selected{{/if}}>Sandwich</option>
-                            <option value="Soups" {{#if product.Soups}}selected{{/if}}>Soup</option>
-                        </select>
-                        {{#if validation.category}}
-                        <small for="category" class="text-danger mt-0">{{validation.category}}</small>
-                        {{/if}}
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="cookingTime">Cooking Time</label>
-                        <input class="form-control" name="cookingTime" type="number" id="cookingTime"
-                            placeholder="Enter Cooking Time" value="{{product.cookingTime}}" required />
-                        {{#if validation.cookingTime}}
-                        <small for="cookingTime" class="text-danger mt-0">{{validation.cookingTime}}</small>
-                        {{/if}}
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
                         <label for="calories">Calories</label>
                         <input class="form-control" name="calories" type="number" id="calories"
                             placeholder="Enter Calories" value="{{product.calories}}" required />
