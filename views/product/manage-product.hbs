@@ -66,63 +66,105 @@
                 </div>
             </div>
         </div>
-        <div class="form-row">
-            <div class="col-12 col-md-6">
-                <div class="form-group">
-                    <label for="cookingTime">Cooking Time</label>
-                    <input class="form-control" name="cookingTime" type="number" id="cookingTime"
-                        placeholder="Enter Cooking Time" value="{{product.cookingTime}}" required />
-                    {{#if validation.cookingTime}}
-                    <small for="cookingTime" class="text-danger mt-0">{{validation.cookingTime}}</small>
-                    {{/if}}
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="form-group">
-                    <label for="calories">Calories</label>
-                    <input class="form-control" name="calories" type="number" id="calories" placeholder="Enter Calories"
-                        value="{{product.calories}}" required />
-                    {{#if validation.calories}}
-                    <small for="calories" class="text-danger mt-0">{{validation.calories}}</small>
-                    {{/if}}
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-6">
-                <div class="form-check">
-                    <label class="form-check-label" for="featured">
-                        <input class="form-check-input" type="checkbox" id="featured" name="featured" value="true"
-                            {{#if product.featured}}checked{{/if}} />Featured
-                    </label>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-check">
-                    <label class="form-check-label" for="available">
-                        <input class="form-check-input" type="checkbox" id="available" name="available" value="true"
-                            {{#if product.available}}checked{{/if}} />Available
-                    </label>
-                </div>
-            </div>
-        </div>
+
         <br>
+
+        {{!--  --}}
         <div class="form-row">
-           <div class="col-12 col-md-6">
-                <div class="form-group">
-                    <label for="picture">Picture</label>
-                    <input type="file" class="form-control-file" id="picture" name="picture">
+            <div class="col-12 col-md-6">
+                <div class="col-10">
+                    <div class="form-group">
+                        <label for="picture">Picture</label>
+                        <img src="/imgs/products/{{product._id}}.jpg" alt="No picture for {{title}}"
+                            class="img-thumbnail">
+                        <input type="file" class="form-control-file" id="picture" name="picture" accept="image/*">
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <label for="servings">Servings</label>
-                    <input class="form-control" name="servings" type="number" id="servings"
-                        placeholder="Enter Servings" value="{{product.servings}}" required />
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="cookingTime">Cooking Time</label>
+                        <input class="form-control" name="cookingTime" type="number" id="cookingTime"
+                            placeholder="Enter Cooking Time" value="{{product.cookingTime}}" required />
+                        {{#if validation.cookingTime}}
+                        <small for="cookingTime" class="text-danger mt-0">{{validation.cookingTime}}</small>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category" class="form-control">
+                            <option value="Breakfast" {{#if product.Breakfast}}selected{{/if}}>Breakfast</option>
+                            <option value="Dinner" {{#if product.Dinner}}selected{{/if}}>Dinner</option>
+                            <option value="Salads" {{#if product.Salads}}selected{{/if}}>Salad</option>
+                            <option value="Sandwiches" {{#if product.Sandwiches}}selected{{/if}}>Sandwich</option>
+                            <option value="Soups" {{#if product.Soups}}selected{{/if}}>Soup</option>
+                        </select>
+                        {{#if validation.category}}
+                        <small for="category" class="text-danger mt-0">{{validation.category}}</small>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="cookingTime">Cooking Time</label>
+                        <input class="form-control" name="cookingTime" type="number" id="cookingTime"
+                            placeholder="Enter Cooking Time" value="{{product.cookingTime}}" required />
+                        {{#if validation.cookingTime}}
+                        <small for="cookingTime" class="text-danger mt-0">{{validation.cookingTime}}</small>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="calories">Calories</label>
+                        <input class="form-control" name="calories" type="number" id="calories"
+                            placeholder="Enter Calories" value="{{product.calories}}" required />
+                        {{#if validation.calories}}
+                        <small for="calories" class="text-danger mt-0">{{validation.calories}}</small>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="servings">Servings</label>
+                    <input class="form-control" name="servings" type="number" id="servings" placeholder="Enter Servings"
+                        value="{{product.servings}}" required />
                     {{#if validation.servings}}
                     <small for="servings" class="text-danger mt-0">{{validation.servings}}</small>
                     {{/if}}
+                </div>
+                <br>
+                <div class="col-12 form-group">
+                    <div class="row">
+
+                    <div class="col-6">
+                        <div class="form-check">
+                            <label class="form-check-label" for="featured">
+                                <input class="form-check-input" type="checkbox" id="featured" name="featured"
+                                    value="true" {{#if product.featured}}checked{{/if}} />Featured
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check">
+                            <label class="form-check-label" for="available">
+                                <input class="form-check-input" type="checkbox" id="available" name="available"
+                                    value="true" {{#if product.available}}checked{{/if}} />Available
+                            </label>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
             </div>
+            <br>
         </div>
+
+
+
+
         <br>
         <input type="hidden" name="_id" id="_id" value="{{product._id}}">
         <div class="row justify-content-between">
