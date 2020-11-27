@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
+const path = require("path");
 
 dotenv.config({ path: "./config/keys.env" });
 const ProductModel = require('../models/products');
@@ -40,9 +41,8 @@ router.post("/update-product-view", (req, res) => {
 });
 
 router.post("/update-product", (req, res) => {
-    const { _id, title, description, available, featured, ingredients, category, price, cookingTime, calories } = req.body;
+    const { _id, title, description, available, featured, ingredients, category, price, servings, cookingTime, calories } = req.body;
     let user = req.session.user;
-    console.log(req.body);
     if (user && user.isDataClerk) {
         // makes sure user is still authorized
         ProductModel.updateOne({
@@ -57,13 +57,22 @@ router.post("/update-product", (req, res) => {
                 category: category,
                 price: price,
                 cookingTime: cookingTime,
-                calories: calories
+                calories: calories,
+                servings: servings
             }
         }).then(() => {
             // this will rename every file to be named as the id and replace extension to jpg 
-            if (req.files) {
-                req.files.picture.name = `${_id}.jpg`;
-                req.files.picture.mv(`public/imgs/products/${req.files.picture.name}`);
+            if (req.files) { // only replace img if a new img was inserted. else ignore
+                
+                let extension = path.parse(req.files.picture.name).ext;
+                console.log(extension);
+                if([".jpg", ".jpeg", ".png", ".gif", ".bmp"].some( (ext) => ext === extension )){
+                    console.log("extension matches");
+                    req.files.picture.name = `${_id}.jpg`;
+                    req.files.picture.mv(`public/imgs/products/${req.files.picture.name}`);
+                } else {
+                    console.log("Invalid file type");
+                }
             }
             console.log("Product saved in Database");
             res.redirect("/data-clerk");
@@ -91,7 +100,7 @@ router.get("/insert-product", (req, res) => {
 router.post("/insert-product", (req, res) => {
     let user = req.session.user;
     if (user && user.isDataClerk) {
-        const { title, description, available, featured, ingredients, category, price, cookingTime, calories } = req.body;
+        const { title, description, servings, available, featured, ingredients, category, price, cookingTime, calories } = req.body;
 
         const newProduct = new ProductModel({
             title: title,
@@ -102,14 +111,24 @@ router.post("/insert-product", (req, res) => {
             category: category,
             price: price,
             cookingTime: cookingTime,
-            calories: calories
+            calories: calories,
+            servings: servings
         });
 
         newProduct.save().then((productSaved) => {
             // this will rename every file to be named as the id and replace extension to jpg 
             if (req.files) {
-                req.files.picture.name = `${productSaved._id}.jpg`;
-                req.files.picture.mv(`public/imgs/products/${req.files.picture.name}`);
+
+                const extension = path.parse(req.files.picture.name).ext;
+                console.log(extension);
+
+                if([".jpg", ".jpeg", ".png", ".gif", ".bmp"].some( (ext) => ext === extension )){
+                    console.log("extension matches");
+                    req.files.picture.name = `${productSaved._id}.jpg`;
+                    req.files.picture.mv(`public/imgs/products/${req.files.picture.name}`);
+                } else {
+                    console.log("Invalid file type");
+                }
             }
             console.log("Product saved in Database");
             res.redirect("/data-clerk");

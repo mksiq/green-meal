@@ -133,7 +133,7 @@
     </div>
 </div>
 
-
+{{!-- modal details --}}
 {{#each data}}
 <div class="modal fade mt-5" id="card{{_id}}-modal" role="dialog">
     <div class="modal-dialog">
@@ -157,13 +157,14 @@
                     </p>
                 </div>
                 <div class="card-footer mt-0">
-                    <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}} Available:
+                    <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}
                             {{#if available}}
-                            <span class="text-success"> Yes</span>
+                            <span class="text-success"> Available</span>
                             {{#else}}
-                            <span class="text-danger"> No</span>
+                            <span class="text-danger"> Out of Stock</span>
                             {{/else}}
                             {{/if}}</span>
+                            <span class="text-muted">Servings: {{servings}}</span>
                     </p>
                     <button class="btn btn-success">Add to Cart</button>
                 </div>

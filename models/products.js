@@ -21,6 +21,10 @@ const productSchema = new Schema({
     price: {
         type: Number
     },
+    servings: {
+        type: Number,
+        default: 1
+    },
     cookingTime: {
         type: Number
     },
