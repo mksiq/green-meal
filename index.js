@@ -3,13 +3,14 @@ const dotenv = require('dotenv');
 let express = require("express");
 let expressHandleBars = require('express-handlebars');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+const session = require('express-session');
+
 const generalController = require("./controllers/general");
 const userController = require("./controllers/user");
 const onTheMenu = require("./controllers/on-the-menu");
-const productController = require("./controllers/products")
-const fileUpload = require('express-fileupload');
-
-const session = require('express-session');
+const productController = require("./controllers/products");
+const cartController = require("./controllers/cart");
 
 dotenv.config({path:"./config/keys.env"});
 
@@ -52,6 +53,8 @@ app.use("/on-the-menu", onTheMenu);
 app.use("/", userController);
 
 app.use("/", productController);
+
+app.use("/", cartController);
 
 app.use((req, res) => {
     if (res.status(404))

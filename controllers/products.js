@@ -157,9 +157,6 @@ router.get("/delete-product/:id", (req, res) => {
             console.log(`${req.params.id} removed from product database.`);
             res.redirect("/data-clerk");
         });
-
-
-
     } else {
         res.redirect('/');
     }

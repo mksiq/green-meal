@@ -20,7 +20,16 @@
                 <li class="nav-item"> <a href="" data-toggle="modal" data-target="#login-modal"
                         class="nav-link white hover-white">LOGIN</a></li>
                 {{/if}}
-                <li class="nav-item"><a href="/on-the-menu" class="nav-link disabled">CART</a></li>
+                
+                {{#if user}}
+                    {{#if user.isDataClerk}}
+                    <li class="nav-item"><a href="#" class="nav-link white text-muted">CART</a></li>
+                    {{else}}
+                        <li class="nav-item"><a href="/cart" class="nav-link white hover-white">CART</a></li>
+                    {{/if}}
+                {{else}}
+                    <li class="nav-item"><a href="#" class="nav-link white text-muted">CART</a></li>
+                {{/if}}
             </ul>
         </div>
         <a href="/" class="nav-brand logo white h4 hover-white">greenMeal</a>
