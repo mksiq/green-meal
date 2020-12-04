@@ -18,7 +18,12 @@ let app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('.hbs', expressHandleBars({
     extname: '.hbs',
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers: {
+        moneyFixed: function(options) {
+            return parseFloat(options.fn(this)).toFixed(2);
+        }
+    }
 }));
 app.set('view engine', '.hbs');
 

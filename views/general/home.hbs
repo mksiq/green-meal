@@ -14,6 +14,7 @@
 <div class="jumbotron jumbotron-fluid mt-3 mb-0 p-0 w-100 bg-big-logo">
     <img alt="many vegetables with greenMeal logo" class="w-100" src="../imgs/background.jpg">
 </div>
+
 <div class="container-fluid yellow-background mt-0 pt-3 ">
     <div class="h2 green text-center mb-2 mt-0 font-weight-bold">How it works</div>
     <div class="row justify-content-sm-center">
@@ -49,16 +50,9 @@
                     <img src="/imgs/products/{{_id}}.jpg" alt="Picture of {{title}}" class="card-img-top">
                     <div class="card-footer mt-0">
                         <p class="text-muted mt-0 mb-1">CAD$ <span
-                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                                class="text-danger font-weight-bold h4">{{#moneyFixed}}{{price}}{{/moneyFixed}}</span></p>
                         <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""
                                 data-toggle="modal" data-target="#card{{_id}}-modal"> + Details</a></p>
-                        {{!-- <button class="btn btn-success">Add to Cart</button> --}}
-                        {{!-- testing button --}}
-                        {{!-- <form  action="/cart/{{_id}}" action="POST">
-                            <input value="{{_id}}" name="_id" />
-                            <input type="submit" class="btn btn-success" value="Add to Cart3"/>
-                        </form>
-                        <a class="btn btn-success" href="/cart/{{_id}}">Add to Cart2</a> --}}
                         {{#if ../user}}
                         {{#if ../user.isDataClerk}}
                         <button type="button" class="btn btn-secondary" data-toggle="popover" data-trigger="focus"
@@ -104,7 +98,7 @@
                             <p class="text-muted mt-0 mb-1">Calories: {{calories}} kcal</p>
                         </div>
                     </div>
-                    <p class="text-muted mt-0 mb-1">CAD$ <span class="text-danger font-weight-bold h4">{{price}}</span>
+                    <p class="text-muted mt-0 mb-1">CAD$ <span class="text-danger font-weight-bold h4">{{#moneyFixed}}{{price}}{{/moneyFixed}}</span>
                     </p>
                 </div>
                 <div class="card-footer mt-0">

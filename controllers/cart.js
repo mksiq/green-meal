@@ -6,7 +6,7 @@ router.get("/cart", (req, res) => {
     let user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
-        if (cart) {
+        if (cart && cart.length > 0) {
             const productModel = require("../models/products.js");
             console.log(cart);
             // use only the id of the array to look for 
@@ -35,7 +35,9 @@ router.get("/cart", (req, res) => {
                 });
         } else {
             res.render("cart/cart", {
-                emptyCart: true
+                emptyCart: true,
+                totalPrice: 0,
+                size: 0
             });
         }
     } else {
@@ -44,6 +46,7 @@ router.get("/cart", (req, res) => {
 });
 
 router.put("/cart/:id", (req, res) => {
+    // Add item into Cart
     let user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
@@ -66,8 +69,7 @@ router.put("/cart/:id", (req, res) => {
         req.session.cart = cart;
 
         res.json({
-            message: "Meal " + req.params.id + " Added",
-            htmlMessage: "send info about <b>meal</b> with id <b>" + req.params.id + "</b>",
+            message: "Meal",
             meal: req.params.id
         });
     } else {
@@ -76,13 +78,13 @@ router.put("/cart/:id", (req, res) => {
 });
 
 router.get("/cart/increase/:id", (req, res) => {
-// increase quantity in cart
+    // increase quantity in cart
     let user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
         const index = cart.findIndex((mealKit) => { return mealKit._id.toString() === req.params.id });
         console.log("Ok clicked on up.");
-        if(index >= 0){
+        if (index >= 0) {
             console.log("Found on index." + index);
             cart[index].quantity++;
         }
@@ -95,15 +97,15 @@ router.get("/cart/increase/:id", (req, res) => {
 });
 
 router.get("/cart/decrease/:id", (req, res) => {
-// decrease quantity in cart
+    // decrease quantity in cart
     let user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
         const index = cart.findIndex((mealKit) => { return mealKit._id.toString() === req.params.id });
-        if(index >= 0){
+        if (index >= 0) {
             cart[index].quantity--;
             // if quantity is 0 remove from cart
-            if(cart[index].quantity <= 0)
+            if (cart[index].quantity <= 0)
                 cart.splice(index, 1);
         }
         req.session.cart = cart;
@@ -113,6 +115,5 @@ router.get("/cart/decrease/:id", (req, res) => {
         res.redirect('/');
     }
 });
-
 
 module.exports = router;

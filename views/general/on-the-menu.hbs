@@ -9,7 +9,7 @@
                     <img src="/imgs/products/{{_id}}.jpg" alt="Picture of {{title}}" class="card-img-top">
                     <div class="card-footer mt-0">
                         <p class="text-muted mt-0 mb-1">CAD$ <span
-                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                                class="text-danger font-weight-bold h4">{{#moneyFixed}}{{#moneyFixed}}{{price}}{{/moneyFixed}}{{/moneyFixed}}</span></p>
                         <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""
                                 data-toggle="modal" data-target="#card{{_id}}-modal"> +
                                 Details</a></p>
@@ -35,7 +35,7 @@
                     <div class="card-body mb-0 pb-0">
                         <p class="text-muted mt-0 mb-1">{{description}}</p>
                         <p class="text-muted mt-0 mb-1">CAD$ <span
-                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                                class="text-danger font-weight-bold h4">{{#moneyFixed}}{{price}}{{/moneyFixed}}</span></p>
                     </div>
                     <div class="card-footer mt-0">
                         <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""
@@ -63,7 +63,7 @@
                     <div class="card-body mb-0 pb-0">
                         <p class="text-muted mt-0 mb-1">{{description}}</p>
                         <p class="text-muted mt-0 mb-1">CAD$ <span
-                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                                class="text-danger font-weight-bold h4">{{#moneyFixed}}{{price}}{{/moneyFixed}}</span></p>
                     </div>
                     <div class="card-footer mt-0">
                         <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""
@@ -90,7 +90,7 @@
                     <div class="card-body mb-0 pb-0">
                         <p class="text-muted mt-0 mb-1">{{description}}</p>
                         <p class="text-muted mt-0 mb-1">CAD$ <span
-                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                                class="text-danger font-weight-bold h4">{{#moneyFixed}}{{price}}{{/moneyFixed}}</span></p>
                     </div>
                     <div class="card-footer mt-0">
                         <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""
@@ -118,7 +118,7 @@
                     <div class="card-body mb-0 pb-0">
                         <p class="text-muted mt-0 mb-1">{{description}}</p>
                         <p class="text-muted mt-0 mb-1">CAD$ <span
-                                class="text-danger font-weight-bold h4">{{price}}</span></p>
+                                class="text-danger font-weight-bold h4">{{#moneyFixed}}{{price}}{{/moneyFixed}}</span></p>
                     </div>
                     <div class="card-footer mt-0">
                         <p class="mb-1 mt-0"><span class="text-muted">Category: {{category}}</span><a href=""
@@ -153,7 +153,7 @@
                             <p class="text-muted mt-0 mb-1">Calories: {{calories}} kcal</p>
                         </div>
                     </div>
-                    <p class="text-muted mt-0 mb-1">CAD$ <span class="text-danger font-weight-bold h4">{{price}}</span>
+                    <p class="text-muted mt-0 mb-1">CAD$ <span class="text-danger font-weight-bold h4">{{#moneyFixed}}{{price}}{{/moneyFixed}}</span>
                     </p>
                 </div>
                 <div class="card-footer mt-0">
