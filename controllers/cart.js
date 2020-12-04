@@ -6,82 +6,113 @@ router.get("/cart", (req, res) => {
     let user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
-
-        if(cart){
+        if (cart) {
             const productModel = require("../models/products.js");
             console.log(cart);
-
-        
-
-       
-
             // use only the id of the array to look for 
-            productModel.find( {_id: {$in:  cart.map( (meal) => meal._id) }} )
+            productModel.find({ _id: { $in: cart.map((meal) => meal._id) } })
                 .lean()
                 .exec()
-                .then( meals  => {
+                .then(meals => {
                     // Add quantity property to meals
-                    meals.map( meal => { return cart.map( cartMeal => {
-                        if(meal._id.toString() == cartMeal._id){
-                            
-                            meal.quantity = cartMeal.quantity;
-                            meal.total = meal.quantity * meal.price;
-                        }
-                })});    
+                    meals.map(meal => {
+                        return cart.map(cartMeal => {
+                            if (meal._id.toString() == cartMeal._id) {
 
-                    let totalPrice = meals.reduce( (acc, cur) =>  acc + cur.total , 0)
+                                meal.quantity = cartMeal.quantity;
+                                meal.total = meal.quantity * meal.price;
+                            }
+                        })
+                    });
+                    let totalPrice = meals.reduce((acc, cur) => acc + cur.total, 0)
                     const cartSize = meals.length;
 
-
-                    console.log("TOtal prices is " + totalPrice)
-
-                    res.render("cart/cart",{
-                        meals : meals,
-                        totalPrice : totalPrice,
+                    res.render("cart/cart", {
+                        meals: meals,
+                        totalPrice: totalPrice,
                         size: cartSize
                     });
                 });
-            
         } else {
-            res.render("cart/cart",{
-                emptyCart : true
+            res.render("cart/cart", {
+                emptyCart: true
             });
         }
-        
-        // res.render("cart/cart",{
-        // });
-
-        
     } else {
         res.redirect('/');
     }
 });
 
-router.put("/cart/:id", (req,res) =>{
-    let cart = req.session.cart;
-    if(!cart)
-        cart = [];
+router.put("/cart/:id", (req, res) => {
+    let user = req.session.user;
+    if (user && !user.isDataClerk) {
+        let cart = req.session.cart;
+        if (!cart)
+            cart = [];
 
-    let index = cart.findIndex((meal)=> 
-         meal._id == req.params.id
-    );
+        let index = cart.findIndex((meal) =>
+            meal._id == req.params.id
+        );
 
-    if(index == -1){
-        let item = {
-            _id: req.params.id,
-            quantity: 1
+        if (index == -1) {
+            let item = {
+                _id: req.params.id,
+                quantity: 1
+            }
+            cart.push(item);
+        } else {
+            cart[index].quantity++;
         }
-        cart.push(item);
-    } else {
-        cart[index].quantity++;
-    }
-    req.session.cart = cart;
+        req.session.cart = cart;
 
-    res.json({
-        message: "Meal " + req.params.id + " Added",
-        htmlMessage: "send info about <b>meal</b> with id <b>" + req.params.id + "</b>",
-        meal: req.params.id
-    });
+        res.json({
+            message: "Meal " + req.params.id + " Added",
+            htmlMessage: "send info about <b>meal</b> with id <b>" + req.params.id + "</b>",
+            meal: req.params.id
+        });
+    } else {
+        res.redirect('/');
+    }
 });
+
+router.get("/cart/increase/:id", (req, res) => {
+// increase quantity in cart
+    let user = req.session.user;
+    if (user && !user.isDataClerk) {
+        let cart = req.session.cart;
+        const index = cart.findIndex((mealKit) => { return mealKit._id.toString() === req.params.id });
+        console.log("Ok clicked on up.");
+        if(index >= 0){
+            console.log("Found on index." + index);
+            cart[index].quantity++;
+        }
+        req.session.cart = cart;
+        res.redirect('/cart');
+
+    } else {
+        res.redirect('/');
+    }
+});
+
+router.get("/cart/decrease/:id", (req, res) => {
+// decrease quantity in cart
+    let user = req.session.user;
+    if (user && !user.isDataClerk) {
+        let cart = req.session.cart;
+        const index = cart.findIndex((mealKit) => { return mealKit._id.toString() === req.params.id });
+        if(index >= 0){
+            cart[index].quantity--;
+            // if quantity is 0 remove from cart
+            if(cart[index].quantity <= 0)
+                cart.splice(index, 1);
+        }
+        req.session.cart = cart;
+        res.redirect('/cart');
+
+    } else {
+        res.redirect('/');
+    }
+});
+
 
 module.exports = router;
