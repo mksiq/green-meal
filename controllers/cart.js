@@ -8,7 +8,6 @@ router.get("/cart", (req, res) => {
         let cart = req.session.cart;
         if (cart && cart.length > 0) {
             const productModel = require("../models/products.js");
-            console.log(cart);
             // use only the id of the array to look for 
             productModel.find({ _id: { $in: cart.map((meal) => meal._id) } })
                 .lean()
@@ -111,6 +110,17 @@ router.get("/cart/decrease/:id", (req, res) => {
         req.session.cart = cart;
         res.redirect('/cart');
 
+    } else {
+        res.redirect('/');
+    }
+});
+
+router.get("/cart/clear", (req, res) => {
+    // Remove all items from cart
+    let user = req.session.user;
+    if (user && !user.isDataClerk) {
+        req.session.cart = [];
+        res.redirect('/cart');
     } else {
         res.redirect('/');
     }
