@@ -95,10 +95,20 @@ router.get("/logout", (req, res) => {
 // Regular User Profile Page
 router.get("/profile", (req, res) => {
     //TODO check requirements, not necessary to update user data
-    let user = req.session.user;
+    const  user = req.session.user;
     if (user && !(user.isDataClerk)){
+        const cart = req.session.cart;
+
+        console.log(cart)
+        let totalItems = undefined;
+        if(cart){
+            totalItems = cart.reduce( (acc, cur) => {
+               return acc + cur.quantity;
+            },0);
+        }
         res.render("User/profile-page", {
-            loggedUser : user
+            loggedUser : user,
+            totalItems : totalItems
         });        
     } else {
         res.redirect('/');
@@ -107,7 +117,7 @@ router.get("/profile", (req, res) => {
 
 // Data Clerk 
 router.get("/data-clerk", (req, res) => {
-    let user = req.session.user;
+    const user = req.session.user;
     if(user && user.isDataClerk){    
         const productModel = require("../models/products.js");
         productModel.find().lean().exec()
@@ -122,9 +132,7 @@ router.get("/data-clerk", (req, res) => {
                 } else {
                     console.log("Error loading database");
                 }
-            }});
-    
-        
+            }});        
     } else {
         res.redirect('/');
     }
@@ -159,7 +167,7 @@ router.post("/register-user", (req, res) => {
                 }
             } else {
                 console.log("Successfully created a new user: " + newUser);
-                //sendEmail  #TODO break into functions
+                //sendEmail 
                 const sgMail = require("@sendgrid/mail");
                 sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 

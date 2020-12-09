@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.get("/cart", (req, res) => {
     //Only regular logged users may use this route
-    let user = req.session.user;
+    const user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
         if (cart && cart.length > 0) {
@@ -23,8 +23,10 @@ router.get("/cart", (req, res) => {
                             }
                         })
                     });
-                    let totalPrice = meals.reduce((acc, cur) => acc + cur.total, 0)
-                    const cartSize = meals.length;
+                    const totalPrice = meals.reduce((acc, cur) => acc + cur.total, 0)
+                    const cartSize = meals.reduce( (acc, cur) => {
+                        return acc + cur.quantity;
+                     },0);
 
                     res.render("cart/cart", {
                         meals: meals,
@@ -82,9 +84,7 @@ router.get("/cart/increase/:id", (req, res) => {
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
         const index = cart.findIndex((mealKit) => { return mealKit._id.toString() === req.params.id });
-        console.log("Ok clicked on up.");
         if (index >= 0) {
-            console.log("Found on index." + index);
             cart[index].quantity++;
         }
         req.session.cart = cart;
