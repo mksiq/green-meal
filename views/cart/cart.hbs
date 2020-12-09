@@ -86,8 +86,8 @@
                         <hr>
                         <div class="row ">
                             <div class="container d-flex justify-content-between">
-                                <a href="/cart/order" class="btn btn-success">Order</a>
-                                <a href="/cart/clear" class="btn btn-danger">Clear</a>
+                                {{#unless emptyCart}}<a href="/cart/order" class="btn btn-success">Order</a>{{/unless}}
+                                {{#unless emptyCart}}<a href="/cart/clear" class="btn btn-danger">Clear</a>{{/unless}}
                             </div>
                         </div>
                     </div>

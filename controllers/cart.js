@@ -128,7 +128,6 @@ router.get("/cart/clear", (req, res) => {
 
 router.get("/cart/order", (req, res) => {
     const user = req.session.user;
-    console.log(user);
     if (user && !user.isDataClerk) {
         // Send email to user after ordering
         const cart = req.session.cart;
@@ -146,7 +145,6 @@ router.get("/cart/order", (req, res) => {
                 meals.map(meal => {
                     return cart.map(cartMeal => {
                         if (meal._id.toString() == cartMeal._id) {
-
                             meal.quantity = cartMeal.quantity;
                             meal.total = meal.quantity * meal.price;
                         }

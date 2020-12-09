@@ -5,7 +5,7 @@ router.get("/", (req, res) => {
     const productModel = require("../models/products.js");
     productModel.find().lean().exec()
         .then(products => {
-            let user = req.session.user;
+            const user = req.session.user;
             if (products) {
                 res.render('general/home',
                     { 
@@ -15,7 +15,10 @@ router.get("/", (req, res) => {
             } else {
                 console.log("Error loading database");
             }
-        })
+        }).catch( err => {
+            console.log("Error : " + err);
+            res.redirect("error");
+        });
 });
 
 module.exports = router;

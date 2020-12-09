@@ -1,7 +1,7 @@
 // https://murmuring-brook-93964.herokuapp.com/ | https://git.heroku.com/green-meal.git 
 const dotenv = require('dotenv');
-let express = require("express");
-let expressHandleBars = require('express-handlebars');
+const express = require("express");
+const expressHandleBars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const session = require('express-session');
@@ -14,7 +14,7 @@ const cartController = require("./controllers/cart");
 
 dotenv.config({path:"./config/keys.env"});
 
-let app = express();
+const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('.hbs', expressHandleBars({
     extname: '.hbs',
@@ -27,7 +27,7 @@ app.engine('.hbs', expressHandleBars({
 }));
 app.set('view engine', '.hbs');
 
-let HTTP_PORT = process.env.PORT;
+const HTTP_PORT = process.env.PORT;
 
 app.use(fileUpload());
 
