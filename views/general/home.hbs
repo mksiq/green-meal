@@ -45,7 +45,7 @@
                         {{#if ../user.isDataClerk}}
                         <button type="button" class="btn btn-secondary" data-toggle="popover" data-trigger="focus"
                             title="Error" data-placement="bottom"
-                            data-content="Only regular users my add item. Login in your regular user account.">Add to
+                            data-content="Only regular users may add items. Login your regular user account.">Add to
                             Cart</button>
                         {{else}}
                         <button type="button" class="btn btn-success" onclick="addToCart('{{_id}}')"
@@ -55,7 +55,7 @@
                         {{else}}
                         <button type="button" class="btn btn-secondary" data-toggle="popover" data-trigger="focus"
                             title="Error" data-placement="bottom"
-                            data-content="Only logged users my add item. Login in your user account.">Add to
+                            data-content="Only logged users may add items. Login your user account.">Add to
                             Cart</button>
                         {{/if}}
                     </div>
