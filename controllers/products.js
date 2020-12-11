@@ -75,10 +75,10 @@ router.post("/update-product", (req, res) => {
                     console.log("Invalid file type");
                 }
             }
-            console.log("Product saved in Database");
+            console.log("Product updated in Database");
             res.redirect("/data-clerk");
         }).catch((err) => {
-            console.error(`Error inserting the product in the database.  ${err}`);
+            console.error(`Error updating the product in the database:  ${err}`);
             res.redirect("/");
         });
     } else {
