@@ -31,15 +31,15 @@
         <div class="text-center"><div class="text-muted">CRUD functionalities NOT implemented.</div></div>
         <br>
     <div class="container">
-        <form action="" method="POST">
+        <form action="/user-update" method="POST">
             <div class="form-row">
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <input name="firstName" class="form-control" type="text" id="first-name" size="30"
-                            placeholder="Enter First Name" value="{{loggedUser.firstName}}" disabled/>
-                        {{#if validationSign.firstName}}
-                        <small for="firstName" class="text-danger mt-0">{{validationSign.firstName}}</small>
+                            placeholder="Enter First Name" value="{{loggedUser.firstName}}" />
+                        {{#if validationUpdate.firstName}}
+                        <small for="firstName" class="text-danger mt-0">{{validationUpdate.firstName}}</small>
                         {{/if}}
                     </div>
                 </div>
@@ -47,9 +47,9 @@
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
                         <input class="form-control" name="lastName" type="text" id="last-name" size="30"
-                            placeholder="Enter Last Name" value="{{loggedUser.lastName}}" disabled/>
-                        {{#if validationSign.lastName}}
-                        <small for="firstName" class="text-danger mt-0">{{validationSign.lastName}}</small>
+                            placeholder="Enter Last Name" value="{{loggedUser.lastName}}" />
+                        {{#if validationUpdate.lastName}}
+                        <small for="firstName" class="text-danger mt-0">{{validationUpdate.lastName}}</small>
                         {{/if}}
                     </div>
                 </div>
@@ -57,9 +57,9 @@
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input class="form-control" name="email" type="text" id="email" size="30" placeholder="Enter e-mail"
-                    value="{{loggedUser.email}}" disabled/>
-                {{#if validationSign.email}}
-                <small for="firstName" class="text-danger mt-0">{{validationSign.email}}</small>
+                    value="{{loggedUser.email}}" />
+                {{#if validationUpdate.email}}
+                <small for="firstName" class="text-danger mt-0">{{validationUpdate.email}}</small>
                 {{/if}}
             </div>
             <div class="form-row">
@@ -67,9 +67,9 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input class="form-control" name="password" type="password" id="password" size="30"
-                            placeholder="Enter Password" value="{{loggedUser.password}}" disabled />
-                        {{#if validationSign.password}}
-                        <small for="firstName" class="text-danger mt-0">{{validationSign.password}}</small>
+                            placeholder="Enter Password" value="{{loggedUser.password}}"  />
+                        {{#if validationUpdate.password}}
+                        <small for="firstName" class="text-danger mt-0">{{validationUpdate.password}}</small>
                         {{/if}}
                     </div>
                 </div>
@@ -77,16 +77,16 @@
                     <div class="form-group">
                         <label for="confirm-password">Confirm Password</label>
                         <input class="form-control" name="confirmPassword" type="password" id="confirm-password"
-                            size="30" placeholder="Re-enter Password" value="{{loggedUser.confirmPassword}}" disabled/>
-                        {{#if validationSign.confirmPassword}}
-                        <small for="firstName" class="text-danger mt-0">{{validationSign.confirmPassword}}</small>
+                            size="30" placeholder="Re-enter Password" value="{{loggedUser.confirmPassword}}" />
+                        {{#if validationUpdate.confirmPassword}}
+                        <small for="firstName" class="text-danger mt-0">{{validationUpdate.confirmPassword}}</small>
                         {{/if}}
                     </div>
                 </div>
             </div>
             <div class="row justify-content-between">
-                <div class="col-6 col-md-3"><a href="/user-update"class="btn btn-secondary form-control">Update</a></div>
-                <div class="col-6 col-md-3"><input type="submit" class="btn btn-secondary form-control" value="Remove" disabled></div>
+                <div class="col-6 col-md-3"><input type="submit" class="btn btn-primary form-control" value="Update" ></div>
+                <div class="col-6 col-md-3"><input type="submit" class="btn btn-secondary form-control" value="Remove" ></div>
             </div>Update
     </div>
     </form>

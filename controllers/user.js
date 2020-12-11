@@ -98,8 +98,6 @@ router.get("/profile", (req, res) => {
     const  user = req.session.user;
     if (user && !(user.isDataClerk)){
         const cart = req.session.cart;
-
-        console.log(cart)
         let totalItems = undefined;
         if(cart){
             totalItems = cart.reduce( (acc, cur) => {
@@ -210,6 +208,71 @@ router.post("/register-user", (req, res) => {
         });
     }
 });
+
+//update user data
+router.get("/user-update", (req, res) => {
+    const  user = req.session.user;
+    let validationSign = {};
+    if (user && !(user.isDataClerk)){
+        const cart = req.session.cart;
+        let totalItems = undefined;
+        if(cart){
+            totalItems = cart.reduce( (acc, cur) => {
+               return acc + cur.quantity;
+            },0);
+        }
+        res.render("User/user-update", {
+            loggedUser : user,
+            totalItems : totalItems,
+            validationSign: validationSign
+        });        
+    } else {
+        res.redirect('/');
+    }
+})
+
+router.post("/user-update", (req, res) => {
+    const  user = req.session.user;
+    let validationUpdate = {};
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
+
+    const valid = confirmUserData(firstName, lastName, email, password, confirmPassword, validationUpdate);
+    if (user && !(user.isDataClerk)){
+
+        const cart = req.session.cart;
+        let totalItems = undefined;
+        if(cart){
+            totalItems = cart.reduce( (acc, cur) => {
+               return acc + cur.quantity;
+            },0);
+        }
+
+        if(valid){
+            userModel.updateOne({_id: user._id},
+                {
+                    $set: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                    }
+                }).then(() =>{
+                    console.log("User data update");
+                }).catch( (err) => {
+                    console.error(`Error updating the product in the database:  ${err}`);
+                    res.redirect("/");
+                })
+            console.log(user._id)
+        } else{   
+            res.render("User/user-update", {
+                loggedUser : user,
+                totalItems : totalItems,
+                validationUpdate: validationUpdate
+            });        
+        }
+    } else {
+        res.redirect('/');
+    }
+})
 
 // Validations functions
 function validateEmail(userEmail, validation) {
