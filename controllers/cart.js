@@ -17,16 +17,15 @@ router.get("/cart", (req, res) => {
                     meals.map(meal => {
                         return cart.map(cartMeal => {
                             if (meal._id.toString() == cartMeal._id) {
-
                                 meal.quantity = cartMeal.quantity;
                                 meal.total = meal.quantity * meal.price;
                             }
                         })
                     });
                     const totalPrice = meals.reduce((acc, cur) => acc + cur.total, 0)
-                    const cartSize = meals.reduce( (acc, cur) => {
+                    const cartSize = meals.reduce((acc, cur) => {
                         return acc + cur.quantity;
-                     },0);
+                    }, 0);
 
                     res.render("cart/cart", {
                         meals: meals,
@@ -48,16 +47,14 @@ router.get("/cart", (req, res) => {
 
 router.put("/cart/:id", (req, res) => {
     // Add item into Cart
-    let user = req.session.user;
+    const user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
         if (!cart)
             cart = [];
-
-        let index = cart.findIndex((meal) =>
+        const index = cart.findIndex((meal) =>
             meal._id == req.params.id
         );
-
         if (index == -1) {
             let item = {
                 _id: req.params.id,
@@ -68,7 +65,6 @@ router.put("/cart/:id", (req, res) => {
             cart[index].quantity++;
         }
         req.session.cart = cart;
-
         res.json({
             message: "Meal",
             meal: req.params.id
@@ -80,7 +76,7 @@ router.put("/cart/:id", (req, res) => {
 
 router.get("/cart/increase/:id", (req, res) => {
     // increase quantity in cart
-    let user = req.session.user;
+    const user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
         const index = cart.findIndex((mealKit) => { return mealKit._id.toString() === req.params.id });
@@ -89,7 +85,6 @@ router.get("/cart/increase/:id", (req, res) => {
         }
         req.session.cart = cart;
         res.redirect('/cart');
-
     } else {
         res.redirect('/');
     }
@@ -97,7 +92,7 @@ router.get("/cart/increase/:id", (req, res) => {
 
 router.get("/cart/decrease/:id", (req, res) => {
     // decrease quantity in cart
-    let user = req.session.user;
+    const user = req.session.user;
     if (user && !user.isDataClerk) {
         let cart = req.session.cart;
         const index = cart.findIndex((mealKit) => { return mealKit._id.toString() === req.params.id });
@@ -117,7 +112,7 @@ router.get("/cart/decrease/:id", (req, res) => {
 
 router.get("/cart/clear", (req, res) => {
     // Remove all items from cart
-    let user = req.session.user;
+    const user = req.session.user;
     if (user && !user.isDataClerk) {
         req.session.cart = [];
         res.redirect('/cart');
@@ -284,8 +279,8 @@ function buildMessage(meals, user) {
         <thead>`;
 
     meals.forEach(meal => {
-        const price = parseFloat(meal.price).toFixed(2);
-        const total = parseFloat(meal.total).toFixed(2);
+        const price = parseFloat(meal.price).toFixed(2) + "";
+        const total = parseFloat(meal.total).toFixed(2) + "";
         message += `<tr>
             <th class="col-6" align="left" valign="top" style="line-height: 24px; font-size: 16px; min-height: 1px; padding-right: 15px; padding-left: 15px; font-weight: normal; width: 50%; margin: 0;">
         ${meal.title}
