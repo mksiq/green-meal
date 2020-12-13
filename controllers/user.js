@@ -17,13 +17,12 @@ mongoose.connect(
 
 //Login
 router.post("/user-login", (req, res) => {
-
     let validation = {};
     validation.error = false;
     const { userEmail, password } = req.body;
     let validEmail = validateEmail(userEmail, validation);
     let validPassword = validatePassword(password, validation);
-    
+
     if (validEmail && validPassword) {
         userModel.findOne({
             email: userEmail
@@ -38,10 +37,10 @@ router.post("/user-login", (req, res) => {
                                 user.password = "";
                                 // Establish Session
                                 req.session.user = user;
-                                if(user && user.isDataClerk){
+                                if (user && user.isDataClerk) {
                                     console.log("Logged as data clerk user");
-                                    res.redirect("/data-clerk");        
-                                } else {          
+                                    res.redirect("/data-clerk");
+                                } else {
                                     console.log("Logged as regular user");
                                     res.redirect("/profile");
                                 }
@@ -67,7 +66,7 @@ router.post("/user-login", (req, res) => {
                         })
                 } else {
                     //Didn't find the email
-                    if(!validation.userEmail) // this if deals with the change the email was empty
+                    if (!validation.userEmail) // this if deals with the change the email was empty
                         validation.userEmail = "User not found.";
                     validation.error = true;
                     res.render("general/home", {
@@ -95,19 +94,19 @@ router.get("/logout", (req, res) => {
 // Regular User Profile Page
 router.get("/profile", (req, res) => {
     //TODO check requirements, not necessary to update user data
-    const  user = req.session.user;
-    if (user && !(user.isDataClerk)){
+    const user = req.session.user;
+    if (user && !(user.isDataClerk)) {
         const cart = req.session.cart;
         let totalItems = undefined;
-        if(cart){
-            totalItems = cart.reduce( (acc, cur) => {
-               return acc + cur.quantity;
-            },0);
+        if (cart) {
+            totalItems = cart.reduce((acc, cur) => {
+                return acc + cur.quantity;
+            }, 0);
         }
         res.render("User/profile-page", {
-            loggedUser : user,
-            totalItems : totalItems
-        });        
+            loggedUser: user,
+            totalItems: totalItems
+        });
     } else {
         res.redirect('/');
     }
@@ -116,21 +115,22 @@ router.get("/profile", (req, res) => {
 // Data Clerk 
 router.get("/data-clerk", (req, res) => {
     const user = req.session.user;
-    if(user && user.isDataClerk){    
+    if (user && user.isDataClerk) {
         const productModel = require("../models/products.js");
         productModel.find().lean().exec()
             .then(products => {
                 if (products) {
                     let user = req.session.user;
-                    if(user && user.isDataClerk){
+                    if (user && user.isDataClerk) {
                         res.render("User/data-clerk", {
-                            user : user,
+                            user: user,
                             data: products
-                        });        
-                } else {
-                    console.log("Error loading database");
+                        });
+                    } else {
+                        console.log("Error loading database");
+                    }
                 }
-            }});        
+            });
     } else {
         res.redirect('/');
     }
@@ -165,6 +165,8 @@ router.post("/register-user", (req, res) => {
                 }
             } else {
                 console.log("Successfully created a new user: " + newUser);
+                req.session.user = newUser;
+                req.session.user.password = "";
                 //sendEmail 
                 const sgMail = require("@sendgrid/mail");
                 sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
@@ -211,63 +213,87 @@ router.post("/register-user", (req, res) => {
 
 //update user data
 router.get("/user-update", (req, res) => {
-    const  user = req.session.user;
+    const user = req.session.user;
     let validationSign = {};
-    if (user && !(user.isDataClerk)){
+    if (user && !(user.isDataClerk)) {
         const cart = req.session.cart;
         let totalItems = undefined;
-        if(cart){
-            totalItems = cart.reduce( (acc, cur) => {
-               return acc + cur.quantity;
-            },0);
+        if (cart) {
+            totalItems = cart.reduce((acc, cur) => {
+                return acc + cur.quantity;
+            }, 0);
         }
         res.render("User/user-update", {
-            loggedUser : user,
-            totalItems : totalItems,
+            loggedUser: user,
+            totalItems: totalItems,
             validationSign: validationSign
-        });        
+        });
+    } else {
+        res.redirect('/');
+    }
+})
+
+//delete user
+router.get("/delete-user/:id", (req, res) => {
+    const user = req.session.user;
+    // makes sure that only regular that have same id as request can delete themselves
+    if (user && !user.isDataClerk && user._id === req.params.id) {
+        userModel.deleteOne({
+            _id: req.params.id
+        }).exec()
+        .then(() => {
+            // delete image from server 
+            req.session.destroy();
+            console.log(`${req.params.id} removed from user database.`);
+            res.redirect("/");
+        });
     } else {
         res.redirect('/');
     }
 })
 
 router.post("/user-update", (req, res) => {
-    const  user = req.session.user;
+    const user = req.session.user;
     let validationUpdate = {};
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     const valid = confirmUserData(firstName, lastName, email, password, confirmPassword, validationUpdate);
-    if (user && !(user.isDataClerk)){
+    if (user && !(user.isDataClerk)) {
 
         const cart = req.session.cart;
         let totalItems = undefined;
-        if(cart){
-            totalItems = cart.reduce( (acc, cur) => {
-               return acc + cur.quantity;
-            },0);
+        if (cart) {
+            totalItems = cart.reduce((acc, cur) => {
+                return acc + cur.quantity;
+            }, 0);
         }
-
-        if(valid){
-            userModel.updateOne({_id: user._id},
+        if (valid) {
+            userModel.updateOne({ _id: user._id },
                 {
                     $set: {
                         firstName: firstName,
                         lastName: lastName,
                         email: email,
                     }
-                }).then(() =>{
-                    console.log("User data update");
-                }).catch( (err) => {
+                }).then(() => {
+                    userModel.findOne({ _id: user._id })
+                        .lean()
+                        .exec().then(updatedUser => {
+                            updatedUser.password = "";
+                            req.session.user = updatedUser;
+                            res.redirect("/profile");
+                        });
+
+                }).catch((err) => {
                     console.error(`Error updating the product in the database:  ${err}`);
                     res.redirect("/");
                 })
-            console.log(user._id)
-        } else{   
+        } else {
             res.render("User/user-update", {
-                loggedUser : user,
-                totalItems : totalItems,
+                loggedUser: user,
+                totalItems: totalItems,
                 validationUpdate: validationUpdate
-            });        
+            });
         }
     } else {
         res.redirect('/');
