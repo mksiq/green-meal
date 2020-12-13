@@ -13,82 +13,112 @@
                         {{#if totalItems}}
                         <p class="card-text text-muted text-center">Total number of items: {{totalItems}}</p>
                         {{else}}
-                        <p class="card-text text-muted text-center">You have no items in your cart. Add some to order.</p>
+                        <p class="card-text text-muted text-center">You have no items in your cart. Add some to order.
+                        </p>
                         {{/if}}
                         <hr>
                         <div class="row justify-content-center">
-                                <a href="/cart" class="btn btn-success green-background">Go to your cart</a>
-                        </div>
+                            <a href="/cart" class="btn btn-success btn-lg green-background">Go to your cart</a>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
-    <br><br>
-    <div class="p  text-center">Update your data:</div>
-        <div class="text-center"><div class="text-muted">CRUD functionalities NOT implemented.</div></div>
-        <br>
-    <div class="container">
-        <form action="" method="POST">
-            <div class="form-row">
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input name="firstName" class="form-control" type="text" id="first-name" size="30"
-                            placeholder="Enter First Name" value="{{loggedUser.firstName}}" disabled/>
-                        {{#if validationSign.firstName}}
-                        <small for="firstName" class="text-danger mt-0">{{validationSign.firstName}}</small>
-                        {{/if}}
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input class="form-control" name="lastName" type="text" id="last-name" size="30"
-                            placeholder="Enter Last Name" value="{{loggedUser.lastName}}" disabled/>
-                        {{#if validationSign.lastName}}
-                        <small for="firstName" class="text-danger mt-0">{{validationSign.lastName}}</small>
-                        {{/if}}
-                    </div>
+</div>
+<br><br>
+<div class="p  text-center">Update your data:</div>
+<div class="text-center">
+    <div class="text-muted">CRUD functionalities NOT implemented.</div>
+</div>
+<br>
+<div class="container">
+    <form action="" method="POST">
+        <div class="form-row">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input name="firstName" class="form-control" type="text" id="first-name" size="30"
+                        placeholder="Enter First Name" value="{{loggedUser.firstName}}" disabled />
+                    {{#if validationSign.firstName}}
+                    <small for="firstName" class="text-danger mt-0">{{validationSign.firstName}}</small>
+                    {{/if}}
                 </div>
             </div>
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input class="form-control" name="email" type="text" id="email" size="30" placeholder="Enter e-mail"
-                    value="{{loggedUser.email}}" disabled/>
-                {{#if validationSign.email}}
-                <small for="firstName" class="text-danger mt-0">{{validationSign.email}}</small>
-                {{/if}}
-            </div>
-            <div class="form-row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input class="form-control" name="password" type="password" id="password" size="30"
-                            placeholder="Enter Password" value="{{loggedUser.password}}" disabled />
-                        {{#if validationSign.password}}
-                        <small for="firstName" class="text-danger mt-0">{{validationSign.password}}</small>
-                        {{/if}}
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="confirm-password">Confirm Password</label>
-                        <input class="form-control" name="confirmPassword" type="password" id="confirm-password"
-                            size="30" placeholder="Re-enter Password" value="{{loggedUser.confirmPassword}}" disabled/>
-                        {{#if validationSign.confirmPassword}}
-                        <small for="firstName" class="text-danger mt-0">{{validationSign.confirmPassword}}</small>
-                        {{/if}}
-                    </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input class="form-control" name="lastName" type="text" id="last-name" size="30"
+                        placeholder="Enter Last Name" value="{{loggedUser.lastName}}" disabled />
+                    {{#if validationSign.lastName}}
+                    <small for="firstName" class="text-danger mt-0">{{validationSign.lastName}}</small>
+                    {{/if}}
                 </div>
             </div>
-            <div class="row justify-content-between">
-                <div class="col-6 col-md-3"><a href="/user-update"class="btn btn-secondary form-control">Update</a></div>
-                <div class="col-6 col-md-3"><input type="submit" class="btn btn-secondary form-control" value="Remove" disabled></div>
-            </div>Update
-    </div>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input class="form-control" name="email" type="text" id="email" size="30" placeholder="Enter e-mail"
+                value="{{loggedUser.email}}" disabled />
+            {{#if validationSign.email}}
+            <small for="firstName" class="text-danger mt-0">{{validationSign.email}}</small>
+            {{/if}}
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" name="password" type="password" id="password" size="30"
+                        placeholder="Enter Password" value="{{loggedUser.password}}" disabled />
+                    {{#if validationSign.password}}
+                    <small for="firstName" class="text-danger mt-0">{{validationSign.password}}</small>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input class="form-control" name="confirmPassword" type="password" id="confirm-password" size="30"
+                        placeholder="Re-enter Password" value="{{loggedUser.confirmPassword}}" disabled />
+                    {{#if validationSign.confirmPassword}}
+                    <small for="firstName" class="text-danger mt-0">{{validationSign.confirmPassword}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="row  justify-content-between">
+            <div class="col-6 col-md-3">
+                <a href="/user-update" class="btn btn-success form-control">Update</a>
+            </div>
+            <div class="col-6 col-md-3 ">
+                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#deleteModal">Delete
+                    Account</button>
+            </div>
+        </div>
     </form>
 </div>
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalTitle"><b>Delete all data</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-muted">
+                Are you sure you want to delete your account, {{user.firstName}}? :(
+                <br><br>
+                <div class="p text-danger text-center">This action is irreversible.</div>
+            </div>
+            <div class="modal-footer row ">
+                <div class="container d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a type="button" href="/delete-user/{{user._id}}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
