@@ -20,9 +20,9 @@ Sent with Send Grid
 ![Order Email](/resources/email.jpg)
 
 ### CRUD on products
-![Crud Meals](data-clerk-crud-image.jpg)
+![Crud Meals](/resources/data-clerk-crud-image.jpg)
 
-![Update Meals](data-clerk-update-image.jpg)
+![Update Meals](/resources/data-clerk-update-image.jpg)
 
 
 ## Installation
